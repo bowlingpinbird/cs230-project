@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Actor {
     private String name;
     private String[] movies;
+
     private int movieCount;
 
     /**
@@ -27,7 +28,7 @@ public class Actor {
      * Adds a movie to the array of movies that this Actor has participated in
      * @param movieName - String of the name of the new movie
      */
-    public void addMovie(String movieName) {
+    public void addMovie(String movieName, String role) {
         this.movies[movieCount] = new Movie(movieName);
         movieCount ++;
     }

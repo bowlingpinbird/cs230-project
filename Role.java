@@ -34,6 +34,20 @@ public class Role {
         return this.movie;
     }
 
-    
+    /**
+     * Returns the gender of this Role
+     * @return String of the gender
+     */
+    public String getGender() {
+        return this.gender;
+    }
+
+    /**
+     * Returns the number of scenes this role appeared in the movie
+     * @return int representing the number of scenes
+     */
+    public int getSceneCount() {
+        return this.sceneCount;
+    }
 
 }

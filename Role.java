@@ -2,7 +2,9 @@
  * Represents an Actor's Role in a Movie
  * cs230 project Task 1
  * 
- * @author Lily Wholen, Sophie Lin, Rachel Hu
+ * @author Sophie Lin
+ * @author Rachel Hu
+ * @author Lilymoon Whalen
  * @version November 28, 2023
  */
 

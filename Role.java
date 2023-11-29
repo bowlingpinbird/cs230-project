@@ -25,4 +25,5 @@ public class Role {
         this.sceneCount = sceneCount;
         this.gender = gender;
     }
+    
 }

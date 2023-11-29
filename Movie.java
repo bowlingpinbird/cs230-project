@@ -12,8 +12,11 @@ public class Movie{
     public Movie(String movieName){
         name = movieName;
     }
-    
+
     public String getName(){
         return name;
+    }
+    public void add(Actor a1){
+        actors.add(a1);
     }
 }

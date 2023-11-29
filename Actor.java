@@ -2,7 +2,9 @@
  * Represents an Actor with their name and the movies they've acted in
  * cs230 final project Task 1
  * 
- * @author Lily Wholen, Sophie Lin, Rachel Hu
+ * @author Sophie Lin
+ * @author Rachel Hu
+ * @author Lilymoon Whalen
  * @version November 28, 2023
  */
 

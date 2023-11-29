@@ -8,9 +8,11 @@ import java.util.ArrayList;
 public class Movie{
     private ArrayList<Actor> actors = new ArrayList<Actor>();
     private String name;
+
     public Movie(String movieName){
         name = movieName;
     }
+    
     public String getName(){
         return name;
     }

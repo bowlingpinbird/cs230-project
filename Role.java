@@ -20,10 +20,20 @@ public class Role {
      * @param gender - gender of the role they played
      */
     public Role(Movie movie, String part, int sceneCount, String gender) {
-        this.Movie = movie;
+        this.movie = movie;
         this.part = part;
         this.sceneCount = sceneCount;
         this.gender = gender;
     }
+
+    /**
+     * Gets the movie associated with this role
+     * @return the movie as a Movie object
+     */
+    public Movie getMovie() {
+        return this.movie;
+    }
+
     
+
 }

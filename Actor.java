@@ -31,8 +31,4 @@ public class Actor {
         this.roles[roleCount] = newRole;
         roleCount ++;
     }
-    
-
-
-
 }

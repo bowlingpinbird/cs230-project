@@ -253,11 +253,34 @@ public class HollywoodGraph<T> implements Graph<T> {
     public boolean isVertex(T vertex) {
         return (this.vertices.indexOf(vertex) != -1);
     }
-
+    /**
+     * Saves the current information into a tgf file
+     * @param String tgf_file_name the name of the tgf file
+     */
     @Override
     public void saveTGF(String tgf_file_name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveTGF'");
+        try {
+            PrintWriter writer = new PrintWriter(new File(tgf_file_name));
+            //notice that indexing in the tgf format starts at 1 (not 0)
+
+            //write vertices by iterating through vector "vertices"
+            for (int i = 0; i < vertices.size(); i++) {
+                writer.print((i+1) + " " + vertices.get(i));
+                writer.println("");
+            }
+            writer.println("#"); // # symbol separates the vertices from the arcs
+
+            //write arcs by iterating through arcs vector
+            for (int i = 0; i < arcs.size(); i++){ //for each adjacent list
+                for (T destinationVertex :arcs.get(i)) { //for each destination vertex in that list
+                    int destinationIndex = vertices.indexOf(destinationVertex); //find the index of that vertex
+                    writer.println((i+1) + " " + (destinationIndex+1));
+                }
+            }
+            writer.close();
+        } catch (IOException ex) {
+            System.out.println("***ERROR***" +  fName + " could not be written");
+        }
     }
 
 }

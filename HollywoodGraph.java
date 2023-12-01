@@ -48,6 +48,7 @@ public class HollywoodGraph<T> implements Graph<T> {
                  }
                 movie = new Movie(info[0]);
                 this.addVertex(null);
+                
             }
 
         } catch (FileNotFoundException e) {

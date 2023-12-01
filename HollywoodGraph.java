@@ -1,4 +1,3 @@
-
 /**
  * Creates a graph representing the relationship between various omvies and actors based on an input file
  * 
@@ -27,31 +26,31 @@ public class HollywoodGraph<T> implements Graph<T> {
         this.vertices = new Vector<T>();
     }
 
-    /**
-     * Constructs a new HollywoodGraph from information stored in the given file
-     * 
-     * @param dataFileName path of the source file
-     */
     public HollywoodGraph(String dataFileName) {
         try {
             Scanner scan = new Scanner(new File(dataFileName));
             String line;
             String[] info; // stores the array created after line gets split
-
+        
             scan.nextLine();// get rid of first line
 
             Movie movie;
             Actor actor;
 
-            while (scan.hasNextLine()) {
-                line = scan.nextLine();
+              while (scan.hasNextLine()) {
+                line = scan.nextLine();                
                 info = line.split(",");
                  for(int i = 0; i < info.length;i++){
                     info[0] = info[0].substring(1,info[0].length()-1); // removes quotation marks
                  }
+                actor = new Actor(info[1]);
+                actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role, Billing, Gender
+                if(!isVertex(Actor(info[1])){
+                    this.addVertex((T) actor);
+                } 
                 movie = new Movie(info[0]);
                 this.addVertex((T) movie);
-                
+                this.addEdge((T)actor, (T)movie);
             }
 
         } catch (FileNotFoundException e) {
@@ -96,7 +95,6 @@ public class HollywoodGraph<T> implements Graph<T> {
 
     /**
      * Checks whether there is an arc between two given verticies
-     * 
      * @param vertex1
      * @param vertex2
      * @return
@@ -121,12 +119,11 @@ public class HollywoodGraph<T> implements Graph<T> {
     /**
      * Adds the input vertex to the graph.
      * If the vertex already exists in the graph, the graph is not changed.
-     * 
      * @param T the vertex to be added to the graph
      */
     @Override
-    public void addVertex(T vertex) {
-        if (!isVertex(vertex)) { // check if the vertex already exists
+    public void addVertex (T vertex) {
+        if (!isVertex(vertex)) { //check if the vertex already exists
             this.vertices.add(vertex);
             this.arcs.add(new LinkedList<>());
         }
@@ -161,7 +158,6 @@ public class HollywoodGraph<T> implements Graph<T> {
 
     /**
      * Adds an arc between the two specified verticies
-     * 
      * @param vertex1
      * @param vertex2
      */
@@ -188,7 +184,6 @@ public class HollywoodGraph<T> implements Graph<T> {
 
     /**
      * Removes the arc between the two specified verticies
-     * 
      * @param vertex1
      * @param vertex2
      */
@@ -209,7 +204,6 @@ public class HollywoodGraph<T> implements Graph<T> {
 
     /**
      * Checks whether there's an edge between the two specified verticies
-     * 
      * @param vertex1
      * @param vertex2
      * @return true if there is an edge
@@ -222,7 +216,6 @@ public class HollywoodGraph<T> implements Graph<T> {
 
     /**
      * Adds an edge between the two specified verticies
-     * 
      * @param vertex1
      * @param vertex2
      */
@@ -234,7 +227,6 @@ public class HollywoodGraph<T> implements Graph<T> {
 
     /**
      * Removes the edge between two specified vertecies
-     * 
      * @param vertex1
      * @param vertex2
      */
@@ -254,41 +246,39 @@ public class HollywoodGraph<T> implements Graph<T> {
     public boolean isVertex(T vertex) {
         return (this.vertices.indexOf(vertex) != -1);
     }
-
     /**
      * Saves the current information into a tgf file
-     * 
      * @param String tgf_file_name the name of the tgf file
      */
     @Override
     public void saveTGF(String tgf_file_name) {
         try {
             PrintWriter writer = new PrintWriter(new File(tgf_file_name));
-            // notice that indexing in the tgf format starts at 1 (not 0)
+            //notice that indexing in the tgf format starts at 1 (not 0)
 
-            // write vertices by iterating through vector "vertices"
+            //write vertices by iterating through vector "vertices"
             for (int i = 0; i < vertices.size(); i++) {
-                writer.print((i + 1) + " " + vertices.get(i));
+                writer.print((i+1) + " " + vertices.get(i));
                 writer.println("");
             }
             writer.println("#"); // # symbol separates the vertices from the arcs
 
-            // write arcs by iterating through arcs vector
-            for (int i = 0; i < arcs.size(); i++) { // for each adjacent list
-                for (T destinationVertex : arcs.get(i)) { // for each destination vertex in that list
-                    int destinationIndex = vertices.indexOf(destinationVertex); // find the index of that vertex
-                    writer.println((i + 1) + " " + (destinationIndex + 1));
+            //write arcs by iterating through arcs vector
+            for (int i = 0; i < arcs.size(); i++){ //for each adjacent list
+                for (T destinationVertex :arcs.get(i)) { //for each destination vertex in that list
+                    int destinationIndex = vertices.indexOf(destinationVertex); //find the index of that vertex
+                    writer.println((i+1) + " " + (destinationIndex+1));
                 }
             }
             writer.close();
         } catch (IOException ex) {
-            System.out.println("***ERROR***" + tgf_file_name + " could not be written");
+            System.out.println("***ERROR***" +  tgf_file_name + " could not be written");
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         HollywoodGraph<String> s1 = new HollywoodGraph<String>("nextBechdel_castGender.txt");
-        s1.saveTGF("nextBechdel_castGender_output.txt");
+        
     }
 
 }

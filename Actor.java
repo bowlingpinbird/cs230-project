@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class Actor {
-    private String name;
+    private final String name;
     private int roleCount;
     
     /*
@@ -82,5 +82,7 @@ public class Actor {
         }
         return description;
     }
+
+
     
 }

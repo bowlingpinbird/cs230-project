@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Movie{
     private ArrayList<Actor> actors = new ArrayList<Actor>();
-    private String name;
+    private final String name;
 
     /**
      * Constructor for creating a movie based on its name

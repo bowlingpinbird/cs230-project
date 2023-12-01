@@ -50,7 +50,7 @@ public class HollywoodGraph<T> implements Graph<T> {
                 line = scan.nextLine();                
                 info = line.split(",");
                  for(int i = 0; i < info.length;i++){
-                    info[0] = info[0].substring(1,info[0].length()-1); // removes quotation marks
+                    info[i] = info[i].substring(1,info[i].length()-1); // removes quotation marks
                  }
                 actor = new Actor(info[1]);
                 actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role, Billing, Gender

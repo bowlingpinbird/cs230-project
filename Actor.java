@@ -11,8 +11,7 @@
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class Actor {
-    private String name;
+public class Actor extends FilmElement{
     private int roleCount;
     
     /*
@@ -29,7 +28,7 @@ public class Actor {
      * @param name - name of the Actor
      */
     public Actor(String name) {
-        this.name = name;
+        super(name);
         this.roleCount = 0;
         
         movies = new Vector<Movie>();

@@ -83,5 +83,6 @@ public class Actor extends FilmElement{
     }
     public String toString(){
         String text = this.name + " has " + this.roleCount + " roles";
+        return text;
     }
 }

@@ -31,11 +31,28 @@ public class Actor {
     public Actor(String name) {
         this.name = name;
         this.roleCount = 0;
+        
         movies = new Vector<Movie>();
         roles = new Vector<String>();
         roleTypes = new Vector<String>();
         billings = new Vector<Integer>();
         genders = new Vector<String>();
+    }
+
+    /**
+     * Getter for name
+     * @return name of Actor
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Getter for number of roles this Actor has played
+     * @return number of roles
+     */
+    public int getRoleCount() {
+        return roleCount;
     }
 
     /**
@@ -50,9 +67,21 @@ public class Actor {
         this.movies.add(new Movie(movieName));
         this.roles.add(roleName);
         this.roleTypes.add(roleTypeName);
+        System.out.println("billing contains: " + billing); //testing
         this.billings.add(Integer.parseInt(billing));
         this.genders.add(genderName);
     }
 
+    /**
+     * Returns a String list of all the movies this Actor has played in
+     * @return the list of movies 
+     */
+    public String getMovies() {
+        String description = "Movies " + this.name + " has played in:\n";
+        for (Movie movie : this.movies) {
+            description += movie.getName() + "\n";
+        }
+        return description;
+    }
     
 }

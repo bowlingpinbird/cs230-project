@@ -13,6 +13,9 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Vector;
+
+import javafoundations.Graph;
+
 import java.util.Scanner;
 import java.util.LinkedList;
 import java.io.File;
@@ -30,7 +33,6 @@ import java.io.IOException;
 public class HollywoodGraph<T> implements Graph<T>{
     private Vector<T> vertices; //Vector to hold the vertices in the graph
     private Vector<LinkedList<T>> arcs;   // Lists of adjacent vertices
-
     /**
      * Default constructor
      */
@@ -52,6 +54,7 @@ public class HollywoodGraph<T> implements Graph<T>{
                 line = scan.nextLine();
                 info = line.split(",");
 
+
                 movie = new Movie(info[0]);
                 this.addVertex(null);
             }
@@ -72,7 +75,6 @@ public class HollywoodGraph<T> implements Graph<T>{
      * @return true if the graph is empty
      *         false if not
      */
-    @Override
     public boolean isEmpty() {
         return this.vertices.size() == 0;
     }
@@ -82,7 +84,6 @@ public class HollywoodGraph<T> implements Graph<T>{
      * 
      * @return int number of vertices
      */
-    @Override
     public int getNumVertices() {
         return vertices.size();
     }
@@ -93,17 +94,30 @@ public class HollywoodGraph<T> implements Graph<T>{
      * 
      * @return int
      */
-    @Override
     public int getNumArcs() {
+         int total = 0;
+        for(int i = 0; i < arcs.size(); i++){
+            total+= arcs.get(i).size(); 
+        }
 
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNumArcs'");
+        return total;
     }
 
-    @Override
     public boolean isArc(T vertex1, T vertex2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isArc'");
+        int s = vertices.indexOf(vertex1);
+        if(vertices.indexOf(vertex1)< 0 || vertices.indexOf(vertex2) < 0 ){
+            return false;
+        } else {
+            LinkedList<T> temp = new LinkedList<T>();
+            temp = arcs.get(s);
+            for (int i = 0; i < temp.size(); i++){
+                if (temp.get(i).equals(vertex2)){
+                    return true;                  
+                }
+            }
+            return false;
+
+        }  
     }
 
     @Override
@@ -125,14 +139,38 @@ public class HollywoodGraph<T> implements Graph<T>{
 
     @Override
     public void addArc(T vertex1, T vertex2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addArc'");
+        int s = vertices.indexOf(vertex1);
+        if(vertices.indexOf(vertex1)< 0 || vertices.indexOf(vertex2) < 0 ){
+
+        } else {
+            LinkedList<T> temp = new LinkedList<T>();
+            temp = arcs.get(s);
+            boolean shouldAdd = true;
+            for (int i = 0; i < temp.size(); i++){
+                if (temp.get(i).equals(vertex2)){
+                    shouldAdd = false;                    
+                }
+
+            }
+            if(shouldAdd){
+                arcs.get(s).add(vertex2);
+            }
+        }
     }
 
-    @Override
     public void removeArc(T vertex1, T vertex2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeArc'");
+        int s=vertices.indexOf(vertex1);
+        if(vertices.indexOf(vertex1)< 0 || vertices.indexOf(vertex2) < 0 ){
+        } else {
+            LinkedList<T> temp = new LinkedList<T>();
+            temp = arcs.get(s);
+            for (int i = 0; i < temp.size(); i++){
+                if (temp.get(i).equals(vertex2)){
+                    temp.remove(s);
+                }
+            }
+
+        }
     }
 
     @Override

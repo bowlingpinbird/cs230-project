@@ -14,6 +14,7 @@ public class Role {
     private int sceneCount;
     private String gender;
 
+    
     /**
      * Defines the an Actor's Role in a specified Movie
      * @param movie - movie they played the part in
@@ -27,7 +28,7 @@ public class Role {
         this.sceneCount = sceneCount;
         this.gender = gender;
     }
-
+    
     /**
      * Gets the movie associated with this role
      * @return the movie as a Movie object
@@ -35,7 +36,7 @@ public class Role {
     public Movie getMovie() {
         return this.movie;
     }
-
+    
     /**
      * Returns the gender of this Role
      * @return String of the gender
@@ -43,7 +44,7 @@ public class Role {
     public String getGender() {
         return this.gender;
     }
-
+    
     /**
      * Returns the number of scenes this role appeared in the movie
      * @return int representing the number of scenes
@@ -51,5 +52,12 @@ public class Role {
     public int getSceneCount() {
         return this.sceneCount;
     }
-
+    
+    /**
+     * Returns the part associated with this Role
+     * @return String describing the part
+     */
+    public String getPart() {
+        return part;
+    }
 }

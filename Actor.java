@@ -16,6 +16,30 @@ public class Actor {
     private int roleCount;
 
     /**
+     * Returns the name of the Actor
+     * @return name as a String
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Returns an array containing all the roles this Actor has played
+     * @return the array of Roles
+     */
+    public Role[] getRoles() {
+        return roles;
+    }
+
+    /**
+     * Returns the number of roles this Actor has played
+     * @return number of roles
+     */
+    public int getRoleCount() {
+        return roleCount;
+    }
+
+    /**
      * Constructor for a new Actor based on name
      * @param name - name of the Actor
      */
@@ -33,4 +57,6 @@ public class Actor {
         this.roles[roleCount] = newRole;
         roleCount ++;
     }
+
+    
 }

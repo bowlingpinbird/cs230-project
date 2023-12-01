@@ -10,7 +10,6 @@ import java.io.IOException;
  * @version November 28, 2023
  */
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;

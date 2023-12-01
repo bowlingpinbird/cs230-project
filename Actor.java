@@ -82,5 +82,7 @@ public class Actor {
         }
         return description;
     }
-    
+    public String toString(){
+        String text = this.name + " has " + this.roleCount + " roles";
+    }
 }

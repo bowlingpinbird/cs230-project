@@ -56,7 +56,7 @@ public class Actor {
     }
 
     /**
-     * Adds a role to the list of information that 
+     * Adds a role that this Actor has participated in 
      * @param movieName
      * @param roleName
      * @param roleTypeName

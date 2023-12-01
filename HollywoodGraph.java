@@ -29,7 +29,13 @@ public class HollywoodGraph<T> implements Graph<T> {
         this.vertices = new Vector<T>();
     }
 
+    /**
+     * Constructs a HollywoodGraph with data from a given source file
+     * @param dataFileName file path of source file
+     */
     public HollywoodGraph(String dataFileName) {
+        this.arcs = new Vector<LinkedList<T>>();
+        this.vertices = new Vector<T>();
         try {
             Scanner scan = new Scanner(new File(dataFileName));
             String line;

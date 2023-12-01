@@ -31,6 +31,11 @@ public class Actor {
     public Actor(String name) {
         this.name = name;
         this.roleCount = 0;
+        movies = new Vector<Movie>();
+        roles = new Vector<String>();
+        roleTypes = new Vector<String>();
+        billings = new Vector<Integer>();
+        genders = new Vector<String>();
     }
 
     /**

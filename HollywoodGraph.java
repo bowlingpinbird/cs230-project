@@ -7,9 +7,6 @@
  * @version November 28, 2023
  */
 
-import java.io.PrintWriter;
-import java.io.File;
-import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -38,6 +35,7 @@ public class HollywoodGraph<T> implements Graph<T> {
             scan.nextLine();// get rid of first line
 
             Movie movie;
+            Actor actor;
 
               while (scan.hasNextLine()) {
                 line = scan.nextLine();                
@@ -45,9 +43,19 @@ public class HollywoodGraph<T> implements Graph<T> {
                  for(int i = 0; i < info.length;i++){
                     info[0] = info[0].substring(1,info[0].length()-1); // removes quotation marks
                  }
+                actor = new Actor(info[1]);
+
+                if(!isVertex((T)info[1]){
+                actor = new Actor(info[1]);
+                } else{
+
+                }
+
                 movie = new Movie(info[0]);
+
                 this.addVertex((T) movie);
                 
+
             }
 
         } catch (FileNotFoundException e) {

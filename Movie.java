@@ -47,7 +47,7 @@ public class Movie extends FilmElement{
      public String toString(){
         String text = name + " has " + actors.size() + " actors\n";
         for(Actor tem: actors){
-            text += tem + "\n";
+            text += tem.getName() + "\n";
         }
         return text;
     }

@@ -1,5 +1,8 @@
 /**
  * This class represents a vertex in the HollywoodGraph.
+ * 
+ * //TODO REMOVE THIS LATER ONCE QUESTIONS ARE RESOLVED: wrote this bc the T casts in HollywoodGraph feel sketchy
+ * 
  *  @author Sophie Lin
  *  @author Lilymoon Whalen 
  *  @author Rachel Hu

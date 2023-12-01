@@ -49,19 +49,23 @@ public class HollywoodGraph<T> implements Graph<T> {
               while (scan.hasNextLine()) {
                 line = scan.nextLine();                
                 info = line.split(",");
-                 for(int i = 0; i < info.length;i++){
+
+                for(int i = 0; i < info.length;i++){
                     info[i] = info[i].substring(1,info[i].length()-1); // removes quotation marks
-                 }
+                }
+
                 actor = new Actor(info[1]);
                 actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role, Billing, Gender
                 movie = new Movie(info[0]);
-                if(!isVertex((T)movie)){
-                    this.addVertex((T)movie);
+
+                if (!isVertex((T)movie)) { //check if this movie has been added already
+                    this.addVertex((T)movie); //add this movie as a vertex if not
                 }
-                if(!isVertex((T)actor)){
+
+                if (!isVertex((T)actor)){ //check if this actor has been added already
                     this.addVertex((T)actor);
-                    movie.addActor(actor);
                 } 
+                movie.addActor(actor);
                 this.addEdge((T)actor, (T)movie);
             }
 
@@ -293,7 +297,7 @@ public class HollywoodGraph<T> implements Graph<T> {
 
         result = result + "\n\nArcs: \n";
         for (int i=0; i< vertices.size(); i++)
-            result = result + "from " + ((FilmElement)vertices.get(i)).getName() + ": "  + arcs.get(i) + "\n";
+            result = result + "from " + vertices.get(i) + ": "  + arcs.get(i) + "\n";
 
         return result;
     }

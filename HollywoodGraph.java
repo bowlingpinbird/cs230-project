@@ -33,6 +33,7 @@ public class HollywoodGraph<T> implements Graph<T> {
             Scanner scan = new Scanner(new File(dataFileName));
             String line;
             String[] info; // stores the array created after line gets split
+        
             scan.nextLine();// get rid of first line
 
             Movie movie;

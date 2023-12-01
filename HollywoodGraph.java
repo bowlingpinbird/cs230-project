@@ -1,6 +1,3 @@
-import java.io.PrintWriter;
-import java.io.File;
-import java.io.IOException;
 /**
  * Creates a graph representing the relationship between various omvies and actors based on an input file
  * 
@@ -10,6 +7,9 @@ import java.io.IOException;
  * @version November 28, 2023
  */
 
+import java.io.PrintWriter;
+import java.io.File;
+import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -46,7 +46,7 @@ public class HollywoodGraph<T> implements Graph<T> {
                     info[0] = info[0].substring(1,info[0].length()-1); // removes quotation marks
                  }
                 movie = new Movie(info[0]);
-                this.addVertex(null);
+                this.addVertex((T) movie);
                 
             }
 

@@ -45,11 +45,13 @@ public class HollywoodGraph<T> implements Graph<T> {
                  }
                 actor = new Actor(info[1]);
                 actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role, Billing, Gender
-                if(!isVertex(actor(info[1])){
-                    this.addVertex((T) actor);
+                if(!isVertex((T)actor){
+                    this.addVertex((T)actor);
                 } 
                 movie = new Movie(info[0]);
-                this.addVertex((T) movie);
+                if(!isVertex((T)movie)){
+                    this.addVertex((T)movie);
+                }
                 this.addEdge((T)actor, (T)movie);
             }
 

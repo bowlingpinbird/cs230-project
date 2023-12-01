@@ -7,7 +7,10 @@
  * @version November 28, 2023
  */
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Vector;
@@ -122,7 +125,6 @@ public class HollywoodGraph<T> implements Graph<T> {
      * If the vertex already exists in the graph, the graph is not changed.
      * @param T the vertex to be added to the graph
      */
-    @Override
     public void addVertex (T vertex) {
         if (!isVertex(vertex)) { //check if the vertex already exists
             this.vertices.add(vertex);
@@ -137,7 +139,6 @@ public class HollywoodGraph<T> implements Graph<T> {
      * 
      * @param T The vertex to be removed.
      */
-    @Override
     public void removeVertex(T vertex) {
         if (isVertex(vertex)) { // if the given vertex actually exists
             // remove arcs pointing to the vertex
@@ -162,7 +163,6 @@ public class HollywoodGraph<T> implements Graph<T> {
      * @param vertex1
      * @param vertex2
      */
-    @Override
     public void addArc(T vertex1, T vertex2) {
         int s = vertices.indexOf(vertex1);
         if (vertices.indexOf(vertex1) < 0 || vertices.indexOf(vertex2) < 0) {
@@ -210,7 +210,6 @@ public class HollywoodGraph<T> implements Graph<T> {
      * @return true if there is an edge
      *         false if there is not an edge
      */
-    @Override
     public boolean isEdge(T vertex1, T vertex2) {
         return isArc(vertex1, vertex2) && isArc(vertex2, vertex1);
     }
@@ -220,7 +219,6 @@ public class HollywoodGraph<T> implements Graph<T> {
      * @param vertex1
      * @param vertex2
      */
-    @Override
     public void addEdge(T vertex1, T vertex2) {
         this.addArc(vertex1, vertex2);
         this.addArc(vertex2, vertex1);
@@ -231,7 +229,6 @@ public class HollywoodGraph<T> implements Graph<T> {
      * @param vertex1
      * @param vertex2
      */
-    @Override
     public void removeEdge(T vertex1, T vertex2) {
         this.removeArc(vertex1, vertex2);
         this.removeArc(vertex2, vertex1);
@@ -251,7 +248,6 @@ public class HollywoodGraph<T> implements Graph<T> {
      * Saves the current information into a tgf file
      * @param String tgf_file_name the name of the tgf file
      */
-    @Override
     public void saveTGF(String tgf_file_name) {
         try {
             PrintWriter writer = new PrintWriter(new File(tgf_file_name));
@@ -277,9 +273,27 @@ public class HollywoodGraph<T> implements Graph<T> {
         }
     }
 
+     /**
+     *  Returns a string representation of the graph.
+     *
+     *  @return String a string representation of this graph
+     */
+    public String toString() {
+        if (vertices.size() == 0) return "Graph is empty";
+
+        String result = "Vertices: \n";
+        result = result + vertices;
+
+        result = result + "\n\nArcs: \n";
+        for (int i=0; i< vertices.size(); i++)
+            result = result + "from " + vertices.get(i) + ": "  + arcs.get(i) + "\n";
+
+        return result;
+    }
+
     public static void main(String[] args){
         HollywoodGraph<String> s1 = new HollywoodGraph<String>("nextBechdel_castGender.txt");
-        
+        System.out.println(s1);
     }
 
 }

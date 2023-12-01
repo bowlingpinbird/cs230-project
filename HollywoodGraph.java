@@ -13,6 +13,9 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Vector;
+
+import javafoundations.Graph;
+
 import java.util.Scanner;
 import java.util.LinkedList;
 import java.io.File;
@@ -117,10 +120,29 @@ public class HollywoodGraph<T> implements Graph<T>{
         throw new UnsupportedOperationException("Unimplemented method 'addVertex'");
     }
 
+    /**
+     * Removes the input vertex from the graph.
+     * If the input vertex does not belong in the graph, the graph is not changed.
+     * Uses equals() for identidying the vertex to be removed.
+     * @param T The vertex to be removed.
+     */
     @Override
-    public void removeVertex(T vertex) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeVertex'");
+    public void removeVertex (T vertex) {
+        if (isVertex(vertex)) { //if the given vertex actually exists
+            //remove arcs pointing to the vertex
+            for (int vert = 0; vert < this.arcs.size(); vert ++) { //iterate through arcs first layer, representing verticies
+                int keepNumArcs = this.arcs.elementAt(vert).size();
+                for (int arc = 0; arc < keepNumArcs; arc ++) { //iterate through each vertex's linked list of arcs
+                    if (this.arcs.elementAt(vert).get(arc).equals(vertex)) {
+                        removeArc(this.vertices.elementAt(vert), vertex); 
+                    }
+                }
+            }
+            //remove the vertex
+            int targetVertIndex = this.vertices.indexOf(vertex);
+            this.vertices.remove(vertex);
+            this.arcs.remove(targetVertIndex);
+        }
     }
 
     @Override
@@ -143,9 +165,19 @@ public class HollywoodGraph<T> implements Graph<T>{
 
     @Override
     public void removeEdge(T vertex1, T vertex2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeEdge'");
+        
     }
+
+    /**
+     * Checks if the given vertex exists in this graph
+     * @param vertex to find
+     * @return true if the vertex exists
+     *         false if not
+     */
+    public boolean isVertex (T vertex) {
+        return (this.vertices.indexOf(vertex) != -1);
+    }
+
 
     @Override
     public void saveTGF(String tgf_file_name) {

@@ -9,35 +9,20 @@
  */
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class Actor {
     private String name;
-    private Role[] roles;
     private int roleCount;
-
-    /**
-     * Returns the name of the Actor
-     * @return name as a String
+    
+    /*
+     * store information about the actor's roles
      */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Returns an array containing all the roles this Actor has played
-     * @return the array of Roles
-     */
-    public Role[] getRoles() {
-        return roles;
-    }
-
-    /**
-     * Returns the number of roles this Actor has played
-     * @return number of roles
-     */
-    public int getRoleCount() {
-        return roleCount;
-    }
+    private Vector<Movie> movies;
+    private Vector<String> roles;
+    private Vector<String> roleTypes;
+    private Vector<Integer> billings;
+    private Vector<String> genders;
 
     /**
      * Constructor for a new Actor based on name
@@ -45,17 +30,23 @@ public class Actor {
      */
     public Actor(String name) {
         this.name = name;
-        this.roles = new Role[10];
         this.roleCount = 0;
     }
 
     /**
-     * Adds a movie to the array of movies that this Actor has participated in
-     * @param movieName - String of the name of the new movie
+     * Adds a role to the list of information that 
+     * @param movieName
+     * @param roleName
+     * @param roleTypeName
+     * @param billing
+     * @param genderName
      */
-    public void addRole(Role newRole) {
-        this.roles[roleCount] = newRole;
-        roleCount ++;
+    public void addRole(String movieName, String roleName, String roleTypeName, String billing, String genderName) {
+        this.movies.add(new Movie(movieName));
+        this.roles.add(roleName);
+        this.roleTypes.add(roleTypeName);
+        this.billings.add(Integer.parseInt(billing));
+        this.genders.add(genderName);
     }
 
     

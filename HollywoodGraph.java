@@ -94,7 +94,6 @@ public class HollywoodGraph<T> implements Graph<T> {
         for (int i = 0; i < arcs.size(); i++) {
             total += arcs.get(i).size();
         }
-
         return total;
     }
 

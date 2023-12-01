@@ -16,21 +16,6 @@ import java.util.Vector;
 
 import javafoundations.Graph;
 
-import java.util.Scanner;
-import java.util.LinkedList;
-import java.io.File;
-import java.io.PrintWriter;
-import java.io.IOException;
-
-/**
- * /**
- * 
- * @author Sophie Lin
- * @author Rachel Hu
- * @author Lilymoon Whalen
- * @version 11/28/2023
- */
-
 public class HollywoodGraph<T> implements Graph<T> {
     private Vector<T> vertices; // Vector to hold the vertices in the graph
     private Vector<LinkedList<T>> arcs; // Lists of adjacent vertices

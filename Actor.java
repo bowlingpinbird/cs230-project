@@ -67,7 +67,6 @@ public class Actor {
         this.movies.add(new Movie(movieName));
         this.roles.add(roleName);
         this.roleTypes.add(roleTypeName);
-        System.out.println("billing contains: " + billing); //testing
         this.billings.add(Integer.parseInt(billing));
         this.genders.add(genderName);
     }

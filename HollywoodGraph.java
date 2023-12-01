@@ -292,9 +292,13 @@ public class HollywoodGraph<T> implements Graph<T> {
         result = result + vertices;
 
         result = result + "\n\nArcs: \n";
-        for (int i=0; i< vertices.size(); i++)
-            result = result + "from " + ((FilmElement)vertices.get(i)).getName() + ": "  + arcs.get(i) + "\n";
-
+        for (int i=0; i< vertices.size(); i++){
+            result = result + "from " + ((FilmElement)vertices.get(i)).getName() + ": ";
+            for(int j = 0; j < arcs.get(i).size();j++){
+                result += arcs.get(i).get(j) + ", ";
+            }
+            result += "\n";
+         }
         return result;
     }
 

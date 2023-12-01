@@ -101,6 +101,12 @@ public class HollywoodGraph<T> implements Graph<T> {
         return total;
     }
 
+    /**
+     * Checks whether there is an arc between two given verticies
+     * @param vertex1
+     * @param vertex2
+     * @return
+     */
     public boolean isArc(T vertex1, T vertex2) {
         int s = vertices.indexOf(vertex1);
         if (vertices.indexOf(vertex1) < 0 || vertices.indexOf(vertex2) < 0) {
@@ -118,9 +124,17 @@ public class HollywoodGraph<T> implements Graph<T> {
         }
     }
 
+    /**
+     * Adds the input vertex to the graph.
+     * If the vertex already exists in the graph, the graph is not changed.
+     * @param T the vertex to be added to the graph
+     */
     @Override
-    public void addVertex(T vertex) {
-        throw new UnsupportedOperationException("Unimplemented method 'addVertex'");
+    public void addVertex (T vertex) {
+        if (!isVertex(vertex)) { //check if the vertex already exists
+            this.vertices.add(vertex);
+            this.arcs.add(new LinkedList<>());
+        }
     }
 
     /**
@@ -135,7 +149,7 @@ public class HollywoodGraph<T> implements Graph<T> {
         if (isVertex(vertex)) { // if the given vertex actually exists
             // remove arcs pointing to the vertex
             for (int vert = 0; vert < this.arcs.size(); vert++) { // iterate through arcs first layer, representing
-                                                                  // verticies
+                // verticies
                 int keepNumArcs = this.arcs.elementAt(vert).size();
                 for (int arc = 0; arc < keepNumArcs; arc++) { // iterate through each vertex's linked list of arcs
                     if (this.arcs.elementAt(vert).get(arc).equals(vertex)) {
@@ -150,6 +164,11 @@ public class HollywoodGraph<T> implements Graph<T> {
         }
     }
 
+    /**
+     * Adds an arc between the two specified verticies
+     * @param vertex1
+     * @param vertex2
+     */
     @Override
     public void addArc(T vertex1, T vertex2) {
         int s = vertices.indexOf(vertex1);
@@ -171,6 +190,11 @@ public class HollywoodGraph<T> implements Graph<T> {
         }
     }
 
+    /**
+     * Removes the arc between the two specified verticies
+     * @param vertex1
+     * @param vertex2
+     */
     public void removeArc(T vertex1, T vertex2) {
         int s = vertices.indexOf(vertex1);
         if (vertices.indexOf(vertex1) < 0 || vertices.indexOf(vertex2) < 0) {
@@ -187,25 +211,37 @@ public class HollywoodGraph<T> implements Graph<T> {
     }
 
     /**
-     * 
+     * Checks whether there's an edge between the two specified verticies
      * @param vertex1
      * @param vertex2
-     * @return
+     * @return true if there is an edge
+     *         false if there is not an edge
      */
     @Override
     public boolean isEdge(T vertex1, T vertex2) {
         return isArc(vertex1, vertex2) && isArc(vertex2, vertex1);
     }
 
+    /**
+     * Adds an edge between the two specified verticies
+     * @param vertex1
+     * @param vertex2
+     */
     @Override
     public void addEdge(T vertex1, T vertex2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addEdge'");
+        this.addArc(vertex1, vertex2);
+        this.addArc(vertex2, vertex1);
     }
 
+    /**
+     * Removes the edge between two specified vertecies
+     * @param vertex1
+     * @param vertex2
+     */
     @Override
     public void removeEdge(T vertex1, T vertex2) {
-
+        this.removeArc(vertex1, vertex2);
+        this.removeArc(vertex2, vertex1);
     }
 
     /**

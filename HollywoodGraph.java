@@ -1,4 +1,6 @@
-
+import java.io.PrintWriter;
+import java.io.File;
+import java.io.IOException;
 /**
  * Creates a graph representing the relationship between various omvies and actors based on an input file
  * 
@@ -265,7 +267,7 @@ public class HollywoodGraph<T> implements Graph<T> {
             }
             writer.close();
         } catch (IOException ex) {
-            System.out.println("***ERROR***" +  fName + " could not be written");
+            System.out.println("***ERROR***" +  tgf_file_name + " could not be written");
         }
     }
 

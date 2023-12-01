@@ -40,10 +40,12 @@ public class HollywoodGraph<T> implements Graph<T> {
 
             Movie movie;
 
-            while (scan.hasNextLine()) {
-                line = scan.nextLine();
+              while (scan.hasNextLine()) {
+                line = scan.nextLine();                
                 info = line.split(",");
-
+                 for(int i = 0; i < info.length;i++){
+                    info[0] = info[0].substring(1,info[0].length()-1); // removes quotation marks
+                 }
                 movie = new Movie(info[0]);
                 this.addVertex(null);
             }

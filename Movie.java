@@ -45,4 +45,11 @@ public class Movie{
         }
         return description;
     }
+     public String toString(){
+        String text = name + " has " + actors.size() + "actors\n";
+        for(Actor tem: actors){
+            text += tem + "\n";
+        }
+        return text;
+    }
 }

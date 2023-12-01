@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class Actor {
-    private final String name;
+    private String name;
     private int roleCount;
     
     /*
@@ -56,7 +56,7 @@ public class Actor {
     }
 
     /**
-     * Adds a role that this Actor has participated in 
+     * Adds a role to the list of information that 
      * @param movieName
      * @param roleName
      * @param roleTypeName
@@ -82,7 +82,5 @@ public class Actor {
         }
         return description;
     }
-
-
     
 }

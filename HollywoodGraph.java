@@ -298,7 +298,7 @@ public class HollywoodGraph<T> implements Graph<T> {
     }
 
     public static void main(String[] args){
-        HollywoodGraph<String> s1 = new HollywoodGraph<String>("nextBechdel_castGender.txt");
+        HollywoodGraph<String> s1 = new HollywoodGraph<String>("data/nextBechdel_castGender.txt");
         System.out.println(s1);
     }
 

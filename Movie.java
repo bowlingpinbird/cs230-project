@@ -5,16 +5,15 @@ import java.util.ArrayList;
  * @author Lilymoon Whalen
  * @version 11/28/2023
  */
-public class Movie{
+public class Movie extends FilmElement{
     private ArrayList<Actor> actors = new ArrayList<Actor>();
-    private final String name;
 
     /**
      * Constructor for creating a movie based on its name
      * @param movieName
      */
     public Movie(String movieName){
-        name = movieName;
+        super(movieName);
         actors = new ArrayList<Actor>();
     }
 

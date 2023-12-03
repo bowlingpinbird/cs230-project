@@ -42,7 +42,8 @@ public class HollywoodGraph<T> implements Graph<T> {
             String[] info; // stores the array created after line gets split
         
             scan.nextLine();// get rid of first line
-
+            // fence post, brute force solve
+            
             Movie movie;
             Actor actor;
               while (scan.hasNextLine()) {
@@ -305,9 +306,10 @@ public class HollywoodGraph<T> implements Graph<T> {
         return result;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         HollywoodGraph<String> s1 = new HollywoodGraph<String>("data/nextBechdel_castGender.txt");
         System.out.println(s1);
+        s1.saveTGF("fileOut.tgf");
     }
 
 }

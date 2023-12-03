@@ -17,16 +17,16 @@ import java.util.Vector;
 
 import javafoundations.Graph;
 
-public class HollywoodGraph<T> implements Graph<T> {
-    private Vector<T> vertices; // Vector to hold the vertices in the graph
-    private Vector<LinkedList<T>> arcs; // Lists of adjacent vertices
+public class HollywoodGraph implements Graph<FilmElement> {
+    private Vector<FilmElement> vertices; // Vector to hold the vertices in the graph
+    private Vector<LinkedList<FilmElement>> arcs; // Lists of adjacent vertices
 
     /**
      * Default constructor
      */
     public HollywoodGraph() {
-        this.arcs = new Vector<LinkedList<T>>();
-        this.vertices = new Vector<T>();
+        this.arcs = new Vector<LinkedList<FilmElement>>();
+        this.vertices = new Vector<FilmElement>();
     }
 
     /**
@@ -34,8 +34,8 @@ public class HollywoodGraph<T> implements Graph<T> {
      * @param dataFileName file path of source file
      */
     public HollywoodGraph(String dataFileName) {
-        this.arcs = new Vector<LinkedList<T>>();
-        this.vertices = new Vector<T>();
+        this.arcs = new Vector<LinkedList<FilmElement>>();
+        this.vertices = new Vector<FilmElement>();
         try {
             Scanner scan = new Scanner(new File(dataFileName));
             String line;
@@ -59,25 +59,23 @@ public class HollywoodGraph<T> implements Graph<T> {
                 actor = new Actor(info[0]);
 
                 if (!movieAdded(movie)) {
-                    this.addVertex((T)movie); //if movie isn't in verticies already, make a new one
+                    this.addVertex(movie); //if movie isn'FilmElement in verticies already, make a new one
                 } else {
                     for (int i = 0; i < vertices.size(); i ++) {
                         if (vertices.elementAt(i).equals(movie)) {
-                            movie = (Movie)vertices.elementAt(i); //if movie isn't new, then make "movie" variable point to the preexisting movie
+                            movie = (Movie)vertices.elementAt(i); //if movie isn'FilmElement new, then make "movie" variable point to the preexisting movie
                         }
                     } 
                 }
 
                 if (!actorAdded(new Actor(info[1]))) {
                     actor = new Actor(info[1]);
-                    this.addVertex((T) info[1]);
+                    this.addVertex(actor);
                 }
 
-                actor = new Actor(info[1]);
                 actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role, Billing, Gender
-                movie = new Movie(info[0]);
                 movie.addActor(actor);
-                this.addEdge((T)actor, (T)movie);
+                this.addEdge(actor, movie);
             }
 
         } catch (FileNotFoundException e) {
@@ -125,12 +123,12 @@ public class HollywoodGraph<T> implements Graph<T> {
      * @param vertex2
      * @return
      */
-    public boolean isArc(T vertex1, T vertex2) {
+    public boolean isArc(FilmElement vertex1, FilmElement vertex2) {
         int s = vertices.indexOf(vertex1);
         if (vertices.indexOf(vertex1) < 0 || vertices.indexOf(vertex2) < 0) {
             return false;
         } else {
-            LinkedList<T> temp = new LinkedList<T>();
+            LinkedList<FilmElement> temp = new LinkedList<FilmElement>();
             temp = arcs.get(s);
             for (int i = 0; i < temp.size(); i++) {
                 if (temp.get(i).equals(vertex2)) {
@@ -145,9 +143,9 @@ public class HollywoodGraph<T> implements Graph<T> {
     /**
      * Adds the input vertex to the graph.
      * If the vertex already exists in the graph, the graph is not changed.
-     * @param T the vertex to be added to the graph
+     * @param FilmElement the vertex to be added to the graph
      */
-    public void addVertex (T vertex) {
+    public void addVertex (FilmElement vertex) {
         if (!isVertex(vertex)) { //check if the vertex already exists
             this.vertices.add(vertex);
             this.arcs.add(new LinkedList<>());
@@ -159,9 +157,9 @@ public class HollywoodGraph<T> implements Graph<T> {
      * If the input vertex does not belong in the graph, the graph is not changed.
      * Uses equals() for identidying the vertex to be removed.
      * 
-     * @param T The vertex to be removed.
+     * @param FilmElement The vertex to be removed.
      */
-    public void removeVertex(T vertex) {
+    public void removeVertex(FilmElement vertex) {
         if (isVertex(vertex)) { // if the given vertex actually exists
             // remove arcs pointing to the vertex
             for (int vert = 0; vert < this.arcs.size(); vert++) { // iterate through arcs first layer, representing
@@ -185,12 +183,12 @@ public class HollywoodGraph<T> implements Graph<T> {
      * @param vertex1
      * @param vertex2
      */
-    public void addArc(T vertex1, T vertex2) {
+    public void addArc(FilmElement vertex1, FilmElement vertex2) {
         int s = vertices.indexOf(vertex1);
         if (vertices.indexOf(vertex1) < 0 || vertices.indexOf(vertex2) < 0) {
 
         } else {
-            LinkedList<T> temp = new LinkedList<T>();
+            LinkedList<FilmElement> temp = new LinkedList<FilmElement>();
             temp = arcs.get(s);
             boolean shouldAdd = true;
             for (int i = 0; i < temp.size(); i++) {
@@ -210,11 +208,11 @@ public class HollywoodGraph<T> implements Graph<T> {
      * @param vertex1
      * @param vertex2
      */
-    public void removeArc(T vertex1, T vertex2) {
+    public void removeArc(FilmElement vertex1, FilmElement vertex2) {
         int s = vertices.indexOf(vertex1);
         if (vertices.indexOf(vertex1) < 0 || vertices.indexOf(vertex2) < 0) {
         } else {
-            LinkedList<T> temp = new LinkedList<T>();
+            LinkedList<FilmElement> temp = new LinkedList<FilmElement>();
             temp = arcs.get(s);
             for (int i = 0; i < temp.size(); i++) {
                 if (temp.get(i).equals(vertex2)) {
@@ -232,7 +230,7 @@ public class HollywoodGraph<T> implements Graph<T> {
      * @return true if there is an edge
      *         false if there is not an edge
      */
-    public boolean isEdge(T vertex1, T vertex2) {
+    public boolean isEdge(FilmElement vertex1, FilmElement vertex2) {
         return isArc(vertex1, vertex2) && isArc(vertex2, vertex1);
     }
 
@@ -241,7 +239,7 @@ public class HollywoodGraph<T> implements Graph<T> {
      * @param vertex1
      * @param vertex2
      */
-    public void addEdge(T vertex1, T vertex2) {
+    public void addEdge(FilmElement vertex1, FilmElement vertex2) {
         this.addArc(vertex1, vertex2);
         this.addArc(vertex2, vertex1);
     }
@@ -251,7 +249,7 @@ public class HollywoodGraph<T> implements Graph<T> {
      * @param vertex1
      * @param vertex2
      */
-    public void removeEdge(T vertex1, T vertex2) {
+    public void removeEdge(FilmElement vertex1, FilmElement vertex2) {
         this.removeArc(vertex1, vertex2);
         this.removeArc(vertex2, vertex1);
     }
@@ -263,7 +261,7 @@ public class HollywoodGraph<T> implements Graph<T> {
      * @return true if the vertex exists
      *         false if not
      */
-    public boolean isVertex(T vertex) {
+    public boolean isVertex(FilmElement vertex) {
         return (this.vertices.indexOf(vertex) != -1);
     }
 
@@ -275,7 +273,7 @@ public class HollywoodGraph<T> implements Graph<T> {
      */
     private boolean movieAdded(Movie movie) {
         for (int i = 0; i < this.vertices.size(); i ++) {
-            if (((Movie) vertices.get(i)).getName().equals(movie.getName())) {
+            if ((vertices.get(i)).getName().equals(movie.getName())) {
                 return true;
             }
         }
@@ -290,7 +288,7 @@ public class HollywoodGraph<T> implements Graph<T> {
      */
     private boolean actorAdded(Actor actor) {
         for (int i = 0; i < this.vertices.size(); i ++) {
-            if (((Actor) vertices.get(i)).getName().equals(actor.getName())) {
+            if ((vertices.get(i)).getName().equals(actor.getName())) {
                 return true;
             }
         }
@@ -315,7 +313,7 @@ public class HollywoodGraph<T> implements Graph<T> {
 
             //write arcs by iterating through arcs vector
             for (int i = 0; i < arcs.size(); i++){ //for each adjacent list
-                for (T destinationVertex :arcs.get(i)) { //for each destination vertex in that list
+                for (FilmElement destinationVertex :arcs.get(i)) { //for each destination vertex in that list
                     int destinationIndex = vertices.indexOf(destinationVertex); //find the index of that vertex
                     writer.println((i+1) + " " + (destinationIndex+1));
                 }
@@ -339,7 +337,7 @@ public class HollywoodGraph<T> implements Graph<T> {
 
         result = result + "\n\nArcs: \n";
         for (int i=0; i< vertices.size(); i++){
-            result = result + "from " + ((FilmElement)vertices.get(i)).getName() + ": ";
+            result = result + "from " + (vertices.get(i)).getName() + ": ";
             for(int j = 0; j < arcs.get(i).size();j++){
                 result += arcs.get(i).get(j) + ", ";
             }
@@ -349,7 +347,7 @@ public class HollywoodGraph<T> implements Graph<T> {
     }
 
     public static void main(String[] args) {
-        HollywoodGraph<String> s1 = new HollywoodGraph<String>("data/nextBechdel_castGender.txt");
+        HollywoodGraph s1 = new HollywoodGraph("data/small_castGender.txt");
         //System.out.println(s1);
         s1.saveTGF("test1.tgf");
     }

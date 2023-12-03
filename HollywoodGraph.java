@@ -42,11 +42,12 @@ public class HollywoodGraph<T> implements Graph<T> {
             String[] info; // stores the array created after line gets split
         
             scan.nextLine();// get rid of first line
-
+            // fence post, brute force solve
+            
             Movie movie;
             Actor actor;
 
-            while (scan.hasNextLine()) {
+              while (scan.hasNextLine()) {
                 line = scan.nextLine();                
                 info = line.split(",");
 
@@ -57,17 +58,17 @@ public class HollywoodGraph<T> implements Graph<T> {
                 movie = new Movie(info[0]);
                 actor = new Actor(info[0]);
 
-                if (!isVertex((T) movie)) {
-                    this.addVertex((T) movie); //if movie isn't in verticies already, make a new one
+                if (!movieAdded((T)movie)) {
+                    this.addVertex((T)movie); //if movie isn't in verticies already, make a new one
                 } else {
                     for (int i = 0; i < vertices.size(); i ++) {
                         if (vertices.elementAt(i).equals(movie)) {
-                            movie = (Movie) vertices.elementAt(i); //if movie isn't new, then make "movie" variable point to the preexisting movie
+                            movie = (Movie)vertices.elementAt(i); //if movie isn't new, then make "movie" variable point to the preexisting movie
                         }
                     } 
                 }
 
-                if (!isVertex((T) new Actor(info[1]))) {
+                if (!actorAdded((T) new Actor(info[1]))) {
                     actor = new Actor(info[1]);
                     this.addVertex((T) info[1]);
                 }
@@ -331,7 +332,7 @@ public class HollywoodGraph<T> implements Graph<T> {
         return result;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         HollywoodGraph<String> s1 = new HollywoodGraph<String>("data/nextBechdel_castGender.txt");
         //System.out.println(s1);
         s1.saveTGF("test1.tgf");

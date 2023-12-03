@@ -45,7 +45,6 @@ public class Movie extends FilmElement{
         return description;
     }
      public String toString(){
-        String text = name;
-        return text;
+        return name;
     }
 }

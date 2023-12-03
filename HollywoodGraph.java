@@ -54,17 +54,27 @@ public class HollywoodGraph<T> implements Graph<T> {
                     info[i] = info[i].substring(1,info[i].length()-1); // removes quotation marks
                 }
 
+                movie = new Movie(info[0]);
+                actor = new Actor(info[0]);
+
+                if (!isVertex((T) movie)) {
+                    this.addVertex((T) movie); //if movie isn't in verticies already, make a new one
+                } else {
+                    for (int i = 0; i < vertices.size(); i ++) {
+                        if (vertices.elementAt(i).equals(movie)) {
+                            movie = (Movie) vertices.elementAt(i); //if movie isn't new, then make "movie" variable point to the preexisting movie
+                        }
+                    } 
+                }
+
+                if (!isVertex((T) new Actor(info[1]))) {
+                    actor = new Actor(info[1]);
+                    this.addVertex((T) info[1]);
+                }
+
                 actor = new Actor(info[1]);
                 actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role, Billing, Gender
                 movie = new Movie(info[0]);
-
-                if (!isVertex((T)movie)) { //check if this movie has been added already
-                    this.addVertex((T)movie); //add this movie as a vertex if not
-                }
-
-                if (!isVertex((T)actor)){ //check if this actor has been added already
-                    this.addVertex((T)actor);
-                } 
                 movie.addActor(actor);
                 this.addEdge((T)actor, (T)movie);
             }
@@ -309,7 +319,7 @@ public class HollywoodGraph<T> implements Graph<T> {
     public static void main(String[] args) {
         HollywoodGraph<String> s1 = new HollywoodGraph<String>("data/nextBechdel_castGender.txt");
         System.out.println(s1);
-        s1.saveTGF("fileOut.tgf");
+        s1.saveTGF("test1.tgf");
     }
 
 }

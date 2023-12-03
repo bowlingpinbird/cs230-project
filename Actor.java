@@ -68,6 +68,7 @@ public class Actor extends FilmElement{
         this.roleTypes.add(roleTypeName);
         this.billings.add(Integer.parseInt(billing));
         this.genders.add(genderName);
+        roleCount ++;
     }
 
     /**

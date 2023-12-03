@@ -58,7 +58,7 @@ public class HollywoodGraph<T> implements Graph<T> {
                 movie = new Movie(info[0]);
                 actor = new Actor(info[0]);
 
-                if (!movieAdded((T)movie)) {
+                if (!movieAdded(movie)) {
                     this.addVertex((T)movie); //if movie isn't in verticies already, make a new one
                 } else {
                     for (int i = 0; i < vertices.size(); i ++) {
@@ -68,7 +68,7 @@ public class HollywoodGraph<T> implements Graph<T> {
                     } 
                 }
 
-                if (!actorAdded((T) new Actor(info[1]))) {
+                if (!actorAdded(new Actor(info[1]))) {
                     actor = new Actor(info[1]);
                     this.addVertex((T) info[1]);
                 }
@@ -281,6 +281,22 @@ public class HollywoodGraph<T> implements Graph<T> {
         }
         return false;
     }
+
+    /**
+     * Checks if the given actor has been added already
+     * @param actor
+     * @return true if the actor is present
+     *         false if the actor is not present
+     */
+    private boolean actorAdded(Actor actor) {
+        for (int i = 0; i < this.vertices.size(); i ++) {
+            if (((Actor) vertices.get(i)).getName().equals(actor.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Saves the current information into a tgf file
      * @param String tgf_file_name the name of the tgf file

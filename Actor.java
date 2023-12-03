@@ -8,7 +8,6 @@
  * @version November 28, 2023
  */
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 public class Actor extends FilmElement{

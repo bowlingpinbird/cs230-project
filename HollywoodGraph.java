@@ -309,6 +309,7 @@ public class HollywoodGraph<T> implements Graph<T> {
     public static void main(String[] args){
         HollywoodGraph<String> s1 = new HollywoodGraph<String>("data/nextBechdel_castGender.txt");
         System.out.println(s1);
+        s1.saveTGF("test1.tgf");
     }
 
 }

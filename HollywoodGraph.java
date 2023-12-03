@@ -265,6 +265,21 @@ public class HollywoodGraph<T> implements Graph<T> {
     public boolean isVertex(T vertex) {
         return (this.vertices.indexOf(vertex) != -1);
     }
+
+    /**
+     * Checks if the given movie has been added already
+     * @param movie
+     * @return true if the movie is present
+     *         false if the movie is not present
+     */
+    private boolean movieAdded(Movie movie) {
+        for (int i = 0; i < this.vertices.size(); i ++) {
+            if (((Movie) vertices.get(i)).getName().equals(movie.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * Saves the current information into a tgf file
      * @param String tgf_file_name the name of the tgf file
@@ -318,7 +333,7 @@ public class HollywoodGraph<T> implements Graph<T> {
 
     public static void main(String[] args){
         HollywoodGraph<String> s1 = new HollywoodGraph<String>("data/nextBechdel_castGender.txt");
-        System.out.println(s1);
+        //System.out.println(s1);
         s1.saveTGF("test1.tgf");
     }
 

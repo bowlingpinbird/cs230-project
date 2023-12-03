@@ -4,7 +4,7 @@
  * @author Sophie Lin
  * @author Rachel Hu
  * @author Lilymoon Whalen
- * @version November 28, 2023
+ * @version December 3, 2023
  */
 
 import java.io.File;
@@ -56,21 +56,26 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 }
 
                 movie = new Movie(info[0]);
-                actor = new Actor(info[0]);
+                actor = new Actor(info[1]);
 
                 if (!movieAdded(movie)) {
                     this.addVertex(movie); //if movie isn'FilmElement in verticies already, make a new one
                 } else {
                     for (int i = 0; i < vertices.size(); i ++) {
-                        if (vertices.elementAt(i).equals(movie)) {
+                        if (vertices.elementAt(i).getName().equals(movie.getName())) {
                             movie = (Movie)vertices.elementAt(i); //if movie isn'FilmElement new, then make "movie" variable point to the preexisting movie
                         }
                     } 
                 }
-
                 if (!actorAdded(new Actor(info[1]))) {
                     actor = new Actor(info[1]);
                     this.addVertex(actor);
+                } else {
+                    for (int i = 0; i < vertices.size(); i ++) {
+                        if (vertices.elementAt(i).getName().equals(actor.getName())) {
+                            actor = (Actor)vertices.elementAt(i); //if movie isn'FilmElement new, then make "movie" variable point to the preexisting movie
+                        }
+                    } 
                 }
 
                 actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role, Billing, Gender
@@ -348,7 +353,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     public static void main(String[] args) {
         HollywoodGraph s1 = new HollywoodGraph("data/small_castGender.txt");
-        //System.out.println(s1);
+        System.out.println(s1);
         s1.saveTGF("test1.tgf");
     }
 

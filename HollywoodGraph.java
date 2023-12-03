@@ -46,6 +46,7 @@ public class HollywoodGraph<T> implements Graph<T> {
             
             Movie movie;
             Actor actor;
+
               while (scan.hasNextLine()) {
                 line = scan.nextLine();                
                 info = line.split(",");
@@ -57,17 +58,17 @@ public class HollywoodGraph<T> implements Graph<T> {
                 movie = new Movie(info[0]);
                 actor = new Actor(info[0]);
 
-                if (!isVertex((T) movie)) {
-                    this.addVertex((T) movie); //if movie isn't in verticies already, make a new one
+                if (!movieAdded((T)movie)) {
+                    this.addVertex((T)movie); //if movie isn't in verticies already, make a new one
                 } else {
                     for (int i = 0; i < vertices.size(); i ++) {
                         if (vertices.elementAt(i).equals(movie)) {
-                            movie = (Movie) vertices.elementAt(i); //if movie isn't new, then make "movie" variable point to the preexisting movie
+                            movie = (Movie)vertices.elementAt(i); //if movie isn't new, then make "movie" variable point to the preexisting movie
                         }
                     } 
                 }
 
-                if (!isVertex((T) new Actor(info[1]))) {
+                if (!actorAdded((T) new Actor(info[1]))) {
                     actor = new Actor(info[1]);
                     this.addVertex((T) info[1]);
                 }

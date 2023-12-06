@@ -5,7 +5,7 @@
  * @author Sophie Lin
  * @author Rachel Hu
  * @author Lilymoon Whalen
- * @version December 3, 2023
+ * @version December 6, 2023
  */
 
 import java.io.File;
@@ -38,15 +38,15 @@ public class HollywoodGraph implements Graph<FilmElement> {
     public HollywoodGraph(String dataFileName) {
         this.arcs = new Vector<LinkedList<FilmElement>>();
         this.vertices = new Vector<FilmElement>();
+
         try {
             Scanner scan = new Scanner(new File(dataFileName));
             String line;
             String[] info; // stores the array created after line gets split
 
             scan.nextLine();// get rid of first line
-            // fence post, brute force solve
 
-            Movie movie;
+            Movie movie; //temporary variables to hold data
             Actor actor;
 
             while (scan.hasNextLine()) {
@@ -60,30 +60,27 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 movie = new Movie(info[0]);
                 actor = new Actor(info[1]);
 
-                if (!movieAdded(movie)) {
-                    this.addVertex(movie); // if movie isn'FilmElement in verticies already, make a new one
+                if (!filmElementAdded(movie)) {
+                    this.addVertex(movie); // if movie isn't in verticies already, make a new one
                 } else {
                     for (int i = 0; i < vertices.size(); i++) {
-                        if (vertices.elementAt(i).getName().equals(movie.getName())) {
-                            movie = (Movie) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie"
-                                                                   // variable point to the preexisting movie
+                        if (vertices.elementAt(i).equals(movie)) {
+                            movie = (Movie) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie" variable point to the preexisting movie
                         }
                     }
                 }
-                if (!actorAdded(new Actor(info[1]))) {
+                if (!filmElementAdded(new Actor(info[1]))) {
                     actor = new Actor(info[1]);
                     this.addVertex(actor);
                 } else {
                     for (int i = 0; i < vertices.size(); i++) {
-                        if (vertices.elementAt(i).getName().equals(actor.getName())) {
-                            actor = (Actor) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie"
-                                                                   // variable point to the preexisting movie
+                        if (vertices.elementAt(i).equals(actor)) {
+                            actor = (Actor) vertices.elementAt(i); // if movie isn'FilmElement new, then make "actor" variable point to the preexisting movie
                         }
                     }
                 }
 
-                actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role,
-                                                                            // Billing, Gender
+                actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role, Billing, Gender
                 movie.addActor(actor);
                 this.addEdge(actor, movie);
             }
@@ -283,31 +280,14 @@ public class HollywoodGraph implements Graph<FilmElement> {
     }
 
     /**
-     * Checks if the given movie has been added already
-     * 
-     * @param movie
-     * @return true if the movie is present
-     *         false if the movie is not present
+     * Checks if the given FilmElement has been added to this.vertecies already
+     * @param element 
+     * @return true if the element has been added
+     *         false if the element has not been added
      */
-    private boolean movieAdded(Movie movie) {
-        for (int i = 0; i < this.vertices.size(); i++) {
-            if ((vertices.get(i)).getName().equals(movie.getName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Checks if the given actor has been added already
-     * 
-     * @param actor
-     * @return true if the actor is present
-     *         false if the actor is not present
-     */
-    private boolean actorAdded(Actor actor) {
-        for (int i = 0; i < this.vertices.size(); i++) {
-            if ((vertices.get(i)).getName().equals(actor.getName())) {
+    private boolean filmElementAdded(FilmElement element) {
+        for (int i = 0; i < this.vertices.size(); i ++) {
+            if (this.vertices.get(i).equals(element)) {
                 return true;
             }
         }

@@ -66,8 +66,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 } else {
                     for (int i = 0; i < vertices.size(); i++) {
                         if (vertices.elementAt(i).equals(movie)) {
-                            movie = (Movie) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie"
-                                                                   // variable point to the preexisting movie
+                            movie = (Movie) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie" variable point to the preexisting movie
                         }
                     }
                 }
@@ -77,14 +76,12 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 } else {
                     for (int i = 0; i < vertices.size(); i++) {
                         if (vertices.elementAt(i).equals(actor)) {
-                            actor = (Actor) vertices.elementAt(i); // if movie isn'FilmElement new, then make "actor"
-                                                                   // variable point to the preexisting movie
+                            actor = (Actor) vertices.elementAt(i); // if movie isn'FilmElement new, then make "actor" variable point to the preexisting movie
                         }
                     }
                 }
 
-                actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role,
-                                                                            // Billing, Gender
+                actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role, Billing, Gender
                 movie.addActor(actor);
                 this.addEdge(actor, movie);
             }
@@ -108,7 +105,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
     /**
      * Returns the number of vertices (movies and actors) in the graph
      * 
-     * @return int number of vertices
+     * @return int number of vertices 
      */
     public int getNumVertices() {
         return vertices.size();
@@ -214,7 +211,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
      */
     public void addArc(FilmElement vertex1, FilmElement vertex2) {
         int s = vertices.indexOf(vertex1);
-        if (vertices.indexOf(vertex1) > 0 && vertices.indexOf(vertex2) > 0) {
+        if (vertices.indexOf(vertex1) >= 0 && vertices.indexOf(vertex2) >= 0) {
             LinkedList<FilmElement> temp = new LinkedList<FilmElement>();
             temp = arcs.get(s);
             boolean shouldAdd = true;
@@ -462,7 +459,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
                         keepGoing = false;
                         break;
                     }
-                    queue.enqueue(vertices.elementAt(index));
+                    queue.enqueue(adjcacent);
                     visited[index] = true;
                 }
             }
@@ -478,6 +475,8 @@ public class HollywoodGraph implements Graph<FilmElement> {
         HollywoodGraph s1 = new HollywoodGraph("data/nextBechdel_castGender.txt");
         System.out.println(s1);
         s1.saveTGF("test1.tgf");
+        System.out.println(s1.separation("Stella", "Me"));
+        
         System.out.println("Testing getAllActors()");
         ArrayList<String> a1 = s1.getAllActors((Movie) s1.findVertex("The Jungle Book"));
         for(String n: a1){

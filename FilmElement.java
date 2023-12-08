@@ -1,28 +1,43 @@
 /**
  * This class represents a vertex in the HollywoodGraph.
+ * Encapsulates Actors and Movies into one object type.
  * 
- * //TODO REMOVE THIS LATER ONCE QUESTIONS ARE RESOLVED: wrote this bc the T casts in HollywoodGraph feel sketchy
- * 
- *  @author Sophie Lin
- *  @author Lilymoon Whalen 
- *  @author Rachel Hu
- * @version 11/30/2023
+ * @author Sophie Lin
+ * @author Lilymoon Whalen
+ * @author Rachel Hu
+ * @version December 6, 20223
  */
 public class FilmElement {
-    String name;
+    protected String name; // name of the movie or actor
+
     /**
-     * Constructor 
+     * Constructor
+     * 
      * @param String name of the element
      */
-    public FilmElement(String name){
+    public FilmElement(String name) {
         this.name = name;
     }
+
     /**
      * Returns the name of the element
+     * 
      * @return String name of the element
      */
-    public String getName(){
+    public String getName() {
         return name;
+    }
+
+    /**
+     * Compares if a given FilmElement is the same as this FilmElement based on
+     * their names
+     * 
+     * @param obj the other FilmElement to compare with this one
+     * @return true if the two have the same name
+     *         false if they have different names
+     */
+    public boolean equals(FilmElement obj) {
+        return obj.getName().equals(this.name);
     }
 
 }

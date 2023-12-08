@@ -1,10 +1,11 @@
+
 /**
  * Creates a graph representing the relationship between various omvies and actors based on an input file
  * 
  * @author Sophie Lin
  * @author Rachel Hu
  * @author Lilymoon Whalen
- * @version December 3, 2023
+ * @version December 6, 2023
  */
 
 import java.io.File;
@@ -32,51 +33,51 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     /**
      * Constructs a HollywoodGraph with data from a given source file
+     * 
      * @param dataFileName file path of source file
      */
     public HollywoodGraph(String dataFileName) {
         this.arcs = new Vector<LinkedList<FilmElement>>();
         this.vertices = new Vector<FilmElement>();
+
         try {
             Scanner scan = new Scanner(new File(dataFileName));
             String line;
             String[] info; // stores the array created after line gets split
-        
+
             scan.nextLine();// get rid of first line
-            // fence post, brute force solve
-            
-            Movie movie;
+            Movie movie; //temporary variables to hold data
             Actor actor;
 
-              while (scan.hasNextLine()) {
-                line = scan.nextLine();                
+            while (scan.hasNextLine()) {
+                line = scan.nextLine();
                 info = line.split(",");
 
-                for(int i = 0; i < info.length;i++){
-                    info[i] = info[i].substring(1,info[i].length()-1); // removes quotation marks
+                for (int i = 0; i < info.length; i++) {
+                    info[i] = info[i].substring(1, info[i].length() - 1); // removes quotation marks
                 }
 
                 movie = new Movie(info[0]);
                 actor = new Actor(info[1]);
 
-                if (!movieAdded(movie)) {
-                    this.addVertex(movie); //if movie isn'FilmElement in verticies already, make a new one
+                if (!filmElementAdded(movie)) {
+                    this.addVertex(movie); // if movie isn't in verticies already, make a new one
                 } else {
-                    for (int i = 0; i < vertices.size(); i ++) {
-                        if (vertices.elementAt(i).getName().equals(movie.getName())) {
-                            movie = (Movie)vertices.elementAt(i); //if movie isn'FilmElement new, then make "movie" variable point to the preexisting movie
+                    for (int i = 0; i < vertices.size(); i++) {
+                        if (vertices.elementAt(i).equals(movie)) {
+                            movie = (Movie) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie" variable point to the preexisting movie
                         }
-                    } 
+                    }
                 }
-                if (!actorAdded(new Actor(info[1]))) {
+                if (!filmElementAdded(new Actor(info[1]))) {
                     actor = new Actor(info[1]);
                     this.addVertex(actor);
                 } else {
-                    for (int i = 0; i < vertices.size(); i ++) {
-                        if (vertices.elementAt(i).getName().equals(actor.getName())) {
-                            actor = (Actor)vertices.elementAt(i); //if movie isn'FilmElement new, then make "movie" variable point to the preexisting movie
+                    for (int i = 0; i < vertices.size(); i++) {
+                        if (vertices.elementAt(i).equals(actor)) {
+                            actor = (Actor) vertices.elementAt(i); // if movie isn'FilmElement new, then make "actor" variable point to the preexisting movie
                         }
-                    } 
+                    }
                 }
 
                 actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role, Billing, Gender
@@ -125,6 +126,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     /**
      * Checks whether there is an arc between two given verticies
+     * 
      * @param vertex1
      * @param vertex2
      * @return
@@ -149,10 +151,11 @@ public class HollywoodGraph implements Graph<FilmElement> {
     /**
      * Adds the input vertex to the graph.
      * If the vertex already exists in the graph, the graph is not changed.
+     * 
      * @param FilmElement the vertex to be added to the graph
      */
-    public void addVertex (FilmElement vertex) {
-        if (!isVertex(vertex)) { //check if the vertex already exists
+    public void addVertex(FilmElement vertex) {
+        if (!isVertex(vertex)) { // check if the vertex already exists
             this.vertices.add(vertex);
             this.arcs.add(new LinkedList<>());
         }
@@ -200,6 +203,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     /**
      * Adds an arc between the two specified verticies
+     * 
      * @param vertex1
      * @param vertex2
      */
@@ -225,6 +229,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     /**
      * Removes the arc between the two specified verticies
+     * 
      * @param vertex1
      * @param vertex2
      */
@@ -245,6 +250,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     /**
      * Checks whether there's an edge between the two specified verticies
+     * 
      * @param vertex1
      * @param vertex2
      * @return true if there is an edge
@@ -256,6 +262,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     /**
      * Adds an edge between the two specified verticies
+     * 
      * @param vertex1
      * @param vertex2
      */
@@ -266,6 +273,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     /**
      * Removes the edge between two specified vertecies
+     * 
      * @param vertex1
      * @param vertex2
      */
@@ -286,29 +294,14 @@ public class HollywoodGraph implements Graph<FilmElement> {
     }
 
     /**
-     * Checks if the given movie has been added already
-     * @param movie
-     * @return true if the movie is present
-     *         false if the movie is not present
+     * Checks if the given FilmElement has been added to this.vertecies already
+     * @param element 
+     * @return true if the element has been added
+     *         false if the element has not been added
      */
-    private boolean movieAdded(Movie movie) {
+    private boolean filmElementAdded(FilmElement element) {
         for (int i = 0; i < this.vertices.size(); i ++) {
-            if ((vertices.get(i)).getName().equals(movie.getName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Checks if the given actor has been added already
-     * @param actor
-     * @return true if the actor is present
-     *         false if the actor is not present
-     */
-    private boolean actorAdded(Actor actor) {
-        for (int i = 0; i < this.vertices.size(); i ++) {
-            if ((vertices.get(i)).getName().equals(actor.getName())) {
+            if (this.vertices.get(i).equals(element)) {
                 return true;
             }
         }
@@ -317,52 +310,54 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     /**
      * Saves the current information into a tgf file
+     * 
      * @param String tgf_file_name the name of the tgf file
      */
     public void saveTGF(String tgf_file_name) {
         try {
             PrintWriter writer = new PrintWriter(new File(tgf_file_name));
-            //notice that indexing in the tgf format starts at 1 (not 0)
+            // notice that indexing in the tgf format starts at 1 (not 0)
 
-            //write vertices by iterating through vector "vertices"
+            // write vertices by iterating through vector "vertices"
             for (int i = 0; i < vertices.size(); i++) {
-                writer.print((i+1) + " " + vertices.get(i));
+                writer.print((i + 1) + " " + vertices.get(i));
                 writer.println("");
             }
             writer.println("#"); // # symbol separates the vertices from the arcs
 
-            //write arcs by iterating through arcs vector
-            for (int i = 0; i < arcs.size(); i++){ //for each adjacent list
-                for (FilmElement destinationVertex :arcs.get(i)) { //for each destination vertex in that list
-                    int destinationIndex = vertices.indexOf(destinationVertex); //find the index of that vertex
-                    writer.println((i+1) + " " + (destinationIndex+1));
+            // write arcs by iterating through arcs vector
+            for (int i = 0; i < arcs.size(); i++) { // for each adjacent list
+                for (FilmElement destinationVertex : arcs.get(i)) { // for each destination vertex in that list
+                    int destinationIndex = vertices.indexOf(destinationVertex); // find the index of that vertex
+                    writer.println((i + 1) + " " + (destinationIndex + 1));
                 }
             }
             writer.close();
         } catch (IOException ex) {
-            System.out.println("***ERROR***" +  tgf_file_name + " could not be written");
+            System.out.println("***ERROR***" + tgf_file_name + " could not be written");
         }
     }
 
-     /**
-     *  Returns a string representation of the graph.
+    /**
+     * Returns a string representation of the graph.
      *
-     *  @return String a string representation of this graph
+     * @return String a string representation of this graph
      */
     public String toString() {
-        if (vertices.size() == 0) return "Graph is empty";
+        if (vertices.size() == 0)
+            return "Graph is empty";
 
         String result = "Vertices: \n";
         result = result + vertices;
 
         result = result + "\n\nArcs: \n";
-        for (int i=0; i< vertices.size(); i++){
+        for (int i = 0; i < vertices.size(); i++) {
             result = result + "from " + (vertices.get(i)).getName() + ": ";
-            for(int j = 0; j < arcs.get(i).size();j++){
+            for (int j = 0; j < arcs.get(i).size(); j++) {
                 result += arcs.get(i).get(j) + ", ";
             }
             result += "\n";
-         }
+        }
         return result;
     }
 

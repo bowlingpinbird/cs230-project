@@ -9,6 +9,9 @@
  */
 
 import java.util.Vector;
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 public class Actor extends FilmElement {
     private int roleCount;
@@ -18,6 +21,7 @@ public class Actor extends FilmElement {
      * corresponding information of a given role in a given movie is placed in the
      * same index across all vectors
      */
+    private Dictionary<String, Role> roleInfo;
     private Vector<Movie> movies; // list of movies the actor has participated in
     private Vector<String> roles; // all roles the actor has played
     private Vector<String> roleTypes; // types of roles of the actor's roles
@@ -32,6 +36,7 @@ public class Actor extends FilmElement {
     public Actor(String name) {
         super(name);
         this.roleCount = 0;
+        roleInfo = new Hashtable<>();
 
         movies = new Vector<Movie>();
         roles = new Vector<String>();
@@ -68,13 +73,22 @@ public class Actor extends FilmElement {
      * @param genderName
      */
     public void addRole(String movieName, String roleName, String roleTypeName, String billing, String genderName) {
+        Role role = new Role(roleName, roleTypeName, billing, genderName);
+        roleInfo.put(movieName, role);
         this.movies.add(new Movie(movieName));
-        this.roles.add(roleName);
-        this.roleTypes.add(roleTypeName);
-        this.billings.add(Integer.parseInt(billing));
-        this.genders.add(genderName);
+
+        //this.roles.add(roleName);
+        //this.roleTypes.add(roleTypeName);
+        //this.billings.add(Integer.parseInt(billing));
+        //this.genders.add(genderName);
         roleCount++;
     }
+
+    public int getMovieIndex(Movie temp){
+        for(int i = 0; i < movies.size(); i++){
+            movies.get(i).equals(temp)
+        }
+        }
 
     /**
      * Returns a String list of all the movies this Actor has played in
@@ -87,6 +101,14 @@ public class Actor extends FilmElement {
             description += movie.getName() + "\n";
         }
         return description;
+    }
+    /** gets the gender assiociated with specific movie
+     * 
+     * @return
+     */
+    public String genderAssociatedWithMovie(String movieName){
+        Role temp = roleInfo.get(movieName);
+        return temp.getGender();
     }
 
     public String toString() {

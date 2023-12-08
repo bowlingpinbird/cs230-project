@@ -15,6 +15,8 @@ import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Vector;
+import java.util.ArrayList;
+
 
 import javafoundations.Graph;
 
@@ -62,10 +64,10 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 if (!filmElementAdded(movie)) {
                     this.addVertex(movie); // if movie isn't in verticies already, make a new one
                 } else {
-                    for (int i = 0; i < vertices.size(); i++) {
+                    }for (int i = 0; i < vertices.size(); i++) {
                         if (vertices.elementAt(i).equals(movie)) {
                             movie = (Movie) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie" variable point to the preexisting movie
-                        }
+                        
                     }
                 }
                 if (!filmElementAdded(new Actor(info[1]))) {
@@ -345,6 +347,24 @@ public class HollywoodGraph implements Graph<FilmElement> {
         }
         return result;
     }
+/** Bechdel Uphold test, tests if a cast for a movie is at least 50% women
+ *  
+ * @param args
+ */
+public boolean upholdTest(Movie movie){
+    ArrayList<Actor> actors = movie.getActorList();
+    int countF = 0;
+    for(int i = 0; i< actors.size();i++){
+        String gender = actors.get(i).genderAssociatedWithMovie(movie.getName());
+        if(gender.equalsIgnoreCase("FEMALE")){
+            countF++;
+        }
+    }
+    if(((double)countF)/actors.size() >= 50.0){
+    return true;
+    }
+    return false;
+}
 
     public static void main(String[] args) {
         HollywoodGraph s1 = new HollywoodGraph("data/nextBechdel_castGender.txt");

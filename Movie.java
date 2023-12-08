@@ -44,6 +44,11 @@ public class Movie extends FilmElement{
         }
         return description;
     }
+        public ArrayList<Actor> getActorList() {
+            return actors;
+        }
+
+
      public String toString(){
         return name;
     }

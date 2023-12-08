@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -191,6 +192,21 @@ public class HollywoodGraph implements Graph<FilmElement> {
             this.arcs.remove(targetVertIndex);
         }
     }
+    /**
+     * Finds the index of the given movie name
+     * @param String movie
+     * @return FilmElement with the given name
+     *         null when the movie could not be found
+     */
+    public FilmElement findVertex(String movie){
+        for (int i = 0; i < vertices.size(); i ++) {
+            if (vertices.elementAt(i).getName().equals(movie)) 
+                return vertices.elementAt(i);
+        }
+        System.out.println("Cannot find the movie in the graph");
+            return null;
+    }
+
 
     /**
      * Adds an arc between the two specified verticies
@@ -354,6 +370,26 @@ public class HollywoodGraph implements Graph<FilmElement> {
     }
 
     /**
+     * 
+     * @param FilmElement movie 
+     */
+    public ArrayList getAllActors(FilmElement movie){
+        ArrayList list = new ArrayList<String>();
+        int index = -1;
+        if(isVertex(movie)){
+            for (int i = 0; i < vertices.size(); i ++) {
+                        if (vertices.elementAt(i).getName().equals(movie.getName())) 
+                          index = i;
+            } 
+        }
+        for(int i = 0; i < arcs.get(index).size(); i++){
+            list.add(arcs.get(index).get(i));
+        }
+        return list;
+    }
+
+    
+    /**
      * Calculates the number of movies separating one actor from another.
      * If they played in a movie together, the separation number is 0.
      * If one actor played in a movie with a third actor, and that third actor
@@ -444,10 +480,15 @@ public class HollywoodGraph implements Graph<FilmElement> {
     }
 
     public static void main(String[] args) {
-        HollywoodGraph s1 = new HollywoodGraph("data/nextBechdel_castGender.txt");
+        HollywoodGraph s1 = new HollywoodGraph("bechdelProject_testing.txt");
         System.out.println(s1);
         s1.saveTGF("test1.tgf");
         System.out.println(s1.separation("Takis", "Stella"));
+        ArrayList<String> a1 = getAllActors(s1.getVertex(findVertex("The Jungle Book")));
+        for(String n: a1){
+            System.out.println(n);
+        }
+        
     }
 
 }

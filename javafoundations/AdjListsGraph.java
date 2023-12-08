@@ -1,6 +1,4 @@
 package javafoundations;
-
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Vector;
 import java.util.Scanner;

@@ -486,7 +486,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
      * 
      * @param args
      */
-    public boolean upholdTest(Movie movie) {
+    public double upholdTest(Movie movie) {
         ArrayList<Actor> actors = movie.getActorList();
         int countF = 0;
         for (int i = 0; i < actors.size(); i++) {
@@ -495,10 +495,8 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 countF++;
             }
         }
-        if (((double) countF) / actors.size() >= 50.0) {
-            return true;
-        }
-        return false;
+        return (double)countF/ actors.size();
+        
     }
 
     public void saveUpholdTest(String fileName) {
@@ -506,12 +504,34 @@ public class HollywoodGraph implements Graph<FilmElement> {
             PrintWriter writer = new PrintWriter(new File(fileName));
             for (int i = 0; i < vertices.size(); i++) {
                 FilmElement temp = vertices.get(i);
+                if(temp.getType().equals("Movie")){
+                    writer.print(vertices.get(i));
+                    double test = upholdTest((Movie)temp);
+                    if (test >= .50){
+                        writer.print( ": Cast is " + test*100 + "% female PASSES the Uphold Test" );
+                    } else {
+                        writer.print(": Cast is " + test*100 + "% female FAILS the Uphold Test");
+                    }
+                        writer.println();
+                }
             }
             writer.close();
-
         } catch (IOException ex) {
             System.out.println("***ERROR***" + fileName + " could not be written");
         }
     }
+    public static void main(String[] args) {
+        HollywoodGraph s1 = new HollywoodGraph("data/nextBechdel_castGender.txt");
+        System.out.println(s1);
+        s1.saveTGF("test1.tgf");
+        s1.saveUpholdTest("bechdelProject_testing.txt");
+        System.out.println("Testing getAllActors()");
+        ArrayList<String> a1 = s1.getAllActors((Movie) s1.findVertex("The Jungle Book"));
+        for(String n: a1){
+            System.out.print(n+", ");
+        }
+        
+    }
+
 
 }

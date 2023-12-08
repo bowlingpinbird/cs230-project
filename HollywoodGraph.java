@@ -1,6 +1,6 @@
 
 /**
- * Creates a graph representing the relationship between various omvies and actors based on an input file
+ * Creates a graph representing the relationship between various omvies and actors based on an input file, along with methods to analyze the graph
  * 
  * @author Sophie Lin
  * @author Rachel Hu
@@ -13,9 +13,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Vector;
 
+import javafoundations.ArrayQueue;
 import javafoundations.Graph;
 
 public class HollywoodGraph implements Graph<FilmElement> {
@@ -46,7 +48,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
             scan.nextLine();// get rid of first line
 
-            Movie movie; //temporary variables to hold data
+            Movie movie; // temporary variables to hold data
             Actor actor;
 
             while (scan.hasNextLine()) {
@@ -65,7 +67,8 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 } else {
                     for (int i = 0; i < vertices.size(); i++) {
                         if (vertices.elementAt(i).equals(movie)) {
-                            movie = (Movie) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie" variable point to the preexisting movie
+                            movie = (Movie) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie"
+                                                                   // variable point to the preexisting movie
                         }
                     }
                 }
@@ -75,12 +78,14 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 } else {
                     for (int i = 0; i < vertices.size(); i++) {
                         if (vertices.elementAt(i).equals(actor)) {
-                            actor = (Actor) vertices.elementAt(i); // if movie isn'FilmElement new, then make "actor" variable point to the preexisting movie
+                            actor = (Actor) vertices.elementAt(i); // if movie isn'FilmElement new, then make "actor"
+                                                                   // variable point to the preexisting movie
                         }
                     }
                 }
 
-                actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role, Billing, Gender
+                actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role,
+                                                                            // Billing, Gender
                 movie.addActor(actor);
                 this.addEdge(actor, movie);
             }
@@ -281,12 +286,13 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     /**
      * Checks if the given FilmElement has been added to this.vertecies already
-     * @param element 
+     * 
+     * @param element
      * @return true if the element has been added
      *         false if the element has not been added
      */
     private boolean filmElementAdded(FilmElement element) {
-        for (int i = 0; i < this.vertices.size(); i ++) {
+        for (int i = 0; i < this.vertices.size(); i++) {
             if (this.vertices.get(i).equals(element)) {
                 return true;
             }
@@ -347,10 +353,101 @@ public class HollywoodGraph implements Graph<FilmElement> {
         return result;
     }
 
+    /**
+     * Calculates the number of movies separating one actor from another.
+     * If they played in a movie together, the separation number is 0.
+     * If one actor played in a movie with a third actor, and that third actor
+     * played in a movie with the second actor,
+     * then the first and second actor have a separation number of 1, so on, and so
+     * forth.
+     * 
+     * @param a1 name of the first actor
+     * @param a2 name of the second actor
+     * @return separation number (-1 if there is no connection between the two actors)
+     */
+    public int separation(String a1, String a2) {
+        int level = -1;
+        // create array to store if an element has been visisted. the index corresponds
+        // with the index of the element in this.vertecies, then mark all as unvisited
+        boolean[] visited = new boolean[this.vertices.size()];
+        for (int i = 0; i < visited.length; i++) {
+            visited[i] = false;
+        }
+
+        ArrayQueue<FilmElement> queue = new ArrayQueue<FilmElement>(); // queue for BFS
+        FilmElement firstInLevel; // keep track of the first FilmElement added to the queue in a given level
+
+        boolean found = false; // keep track of if a2 has been found from a1 yet
+
+        Actor actor1 = new Actor(a1);
+        Actor actor2 = new Actor(a2);
+
+        //get the Actor object in this.vertecies that corresponds to the actor specified in a1
+        for (int i = 0; i < vertices.size(); i++) {
+            if (vertices.elementAt(i).equals(actor1)) {
+                actor1 = (Actor) vertices.elementAt(i);
+            }
+            //same as above, just for a2
+            if (vertices.elementAt(i).equals(actor2)) {
+                actor2 = (Actor) vertices.elementAt(i);
+            }
+        }
+
+        int a1Index = this.vertices.indexOf(actor1);
+
+        firstInLevel = actor1;
+        queue.enqueue(actor1); // enqueue a1 to the queue
+        visited[a1Index] = true;
+
+        boolean keepGoing = true;
+
+        while (!queue.isEmpty() && keepGoing) {
+            FilmElement current = queue.dequeue();
+            int currentIndex = vertices.indexOf(current);
+
+            if (current.equals(firstInLevel)) {
+                level ++;
+                if (current.equals(actor2)) { //check if this is the vertex we want for actor2
+                    found = true;
+                    keepGoing = false;
+                    break;
+                }
+                LinkedList<FilmElement> currentArcsList = arcs.elementAt(currentIndex);
+                if (currentArcsList.size() != 0) { //if there's actually more nodes connected to it
+                    for (int i = 0; i < currentArcsList.size(); i ++) {
+                        if (!visited[vertices.indexOf(currentArcsList.get(i))]) {  //if it hasn't been visited yet
+                            firstInLevel = currentArcsList.get(i); //TODO this line will probably cause bugs, trying to assign new firstInLevel
+                        }
+                    }
+                }
+                queue.enqueue(firstInLevel);
+            }
+
+            for (int index = 0; index < this.getNumVertices(); index ++) {
+                if (isArc(current, vertices.elementAt(index)) && !visited[index]) { //for every index that hasn't been visited yet and if it has an arc with next
+                    FilmElement adjcacent = vertices.elementAt(index);
+                    if (adjcacent.equals(actor2)) {
+                        found = true;
+                        keepGoing = false;
+                        break;
+                    }
+                    queue.enqueue(vertices.elementAt(index));
+                    visited[index] = true;
+                }
+            }
+        }
+
+        if (found != true) {
+            return -1; //no connection
+        }
+        return level / 2;
+    }
+
     public static void main(String[] args) {
         HollywoodGraph s1 = new HollywoodGraph("data/nextBechdel_castGender.txt");
         System.out.println(s1);
         s1.saveTGF("test1.tgf");
+        System.out.println(s1.separation("Takis", "Stella"));
     }
 
 }

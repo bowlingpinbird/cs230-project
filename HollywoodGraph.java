@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Vector;
@@ -182,6 +183,20 @@ public class HollywoodGraph implements Graph<FilmElement> {
             this.arcs.remove(targetVertIndex);
         }
     }
+    /**
+     * Finds the index of the given movie name
+     * @param String movie
+     * @return int index of the given movie name
+     *              -1 if the vertex is not found
+     */
+    public int findVertex(String movie){
+        for (int i = 0; i < vertices.size(); i ++) {
+            if (vertices.elementAt(i).getName().equals(movie)) 
+                return i;
+        }
+        System.out.println("Cannot find the movie in the graph");
+            return -1;
+    }
 
     /**
      * Adds an arc between the two specified verticies
@@ -351,10 +366,35 @@ public class HollywoodGraph implements Graph<FilmElement> {
         return result;
     }
 
+    /**
+     * 
+     * @param FilmElement movie 
+     */
+    public ArrayList getAllActors(FilmElement movie){
+        ArrayList list = new ArrayList<String>();
+        int index = -1;
+        if(isVertex(movie)){
+            for (int i = 0; i < vertices.size(); i ++) {
+                        if (vertices.elementAt(i).getName().equals(movie.getName())) 
+                          index = i;
+            } 
+        }
+        for(int i = 0; i < arcs.get(index).size(); i++){
+            list.add(arcs.get(index).get(i));
+        }
+        return list;
+    }
+
+    
     public static void main(String[] args) {
         HollywoodGraph s1 = new HollywoodGraph("data/nextBechdel_castGender.txt");
         System.out.println(s1);
         s1.saveTGF("test1.tgf");
+      /*   ArrayList<String> a1 = getAllActors();
+        for(String n: a1){
+            System.out.println(n);
+        }
+        */
     }
 
 }

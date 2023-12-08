@@ -83,6 +83,6 @@ public class Actor extends FilmElement{
         return description;
     }
     public String toString(){
-        return name;
+        return name;    
     }
 }

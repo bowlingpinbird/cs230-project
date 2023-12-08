@@ -189,17 +189,18 @@ public class HollywoodGraph implements Graph<FilmElement> {
     /**
      * Finds the index of the given movie name
      * @param String movie
-     * @return int index of the given movie name
-     *              -1 if the vertex is not found
+     * @return FilmElement with the given name
+     *         null when the movie could not be found
      */
-    public int findVertex(String movie){
+    public FilmElement findVertex(String movie){
         for (int i = 0; i < vertices.size(); i ++) {
             if (vertices.elementAt(i).getName().equals(movie)) 
-                return i;
+                return vertices.elementAt(i);
         }
         System.out.println("Cannot find the movie in the graph");
-            return -1;
+            return null;
     }
+
 
     /**
      * Adds an arc between the two specified verticies
@@ -382,14 +383,14 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     
     public static void main(String[] args) {
-        HollywoodGraph s1 = new HollywoodGraph("data/nextBechdel_castGender.txt");
+        HollywoodGraph s1 = new HollywoodGraph("bechdelProject_testing.txt");
         System.out.println(s1);
         s1.saveTGF("test1.tgf");
-      /*   ArrayList<String> a1 = getAllActors();
+        ArrayList<String> a1 = getAllActors(s1.getVertex(findVertex("The Jungle Book")));
         for(String n: a1){
             System.out.println(n);
         }
-        */
+        
     }
 
 }

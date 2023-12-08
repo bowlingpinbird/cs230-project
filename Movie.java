@@ -13,7 +13,7 @@ public class Movie extends FilmElement{
      * @param movieName
      */
     public Movie(String movieName){
-        super(movieName);
+        super(movieName, "Movie");
         actors = new ArrayList<Actor>();
     }
 
@@ -39,6 +39,7 @@ public class Movie extends FilmElement{
      */
     public String getActors() {
         String description = "Actors involved in " + this.name + "\n";
+
         for (Actor actor : this.actors) {
             description += actor.getName() + "\n";
         }

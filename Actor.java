@@ -34,7 +34,7 @@ public class Actor extends FilmElement {
      * @param name - name of the Actor
      */
     public Actor(String name) {
-        super(name);
+        super(name, "Actor");
         this.roleCount = 0;
         roleInfo = new Hashtable<>();
 

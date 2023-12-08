@@ -1,4 +1,3 @@
-
 /**
  * Creates a graph representing the relationship between various omvies and actors based on an input file, along with methods to analyze the graph
  * 
@@ -14,7 +13,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -120,7 +118,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
      * Returns the number of arcs (relationships between movies and actors in the
      * graph)
      * 
-     * @return int
+     * @return total number of arcs in the graph
      */
     public int getNumArcs() {
         int total = 0;
@@ -135,7 +133,8 @@ public class HollywoodGraph implements Graph<FilmElement> {
      * 
      * @param vertex1
      * @param vertex2
-     * @return
+     * @return true if there is an arc between the two verticies
+     *         false if there is not an arc
      */
     public boolean isArc(FilmElement vertex1, FilmElement vertex2) {
         int s = vertices.indexOf(vertex1);
@@ -207,7 +206,6 @@ public class HollywoodGraph implements Graph<FilmElement> {
             return null;
     }
 
-
     /**
      * Adds an arc between the two specified verticies
      * 
@@ -216,9 +214,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
      */
     public void addArc(FilmElement vertex1, FilmElement vertex2) {
         int s = vertices.indexOf(vertex1);
-        if (vertices.indexOf(vertex1) < 0 || vertices.indexOf(vertex2) < 0) {
-
-        } else {
+        if (vertices.indexOf(vertex1) > 0 && vertices.indexOf(vertex2) > 0) {
             LinkedList<FilmElement> temp = new LinkedList<FilmElement>();
             temp = arcs.get(s);
             boolean shouldAdd = true;
@@ -226,7 +222,6 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 if (temp.get(i).equals(vertex2)) {
                     shouldAdd = false;
                 }
-
             }
             if (shouldAdd) {
                 arcs.get(s).add(vertex2);
@@ -251,7 +246,6 @@ public class HollywoodGraph implements Graph<FilmElement> {
                     temp.remove(s);
                 }
             }
-
         }
     }
 
@@ -370,10 +364,11 @@ public class HollywoodGraph implements Graph<FilmElement> {
     }
 
     /**
+     * Returns an ArrayList of the names of every actor that has played in a given movie
      * 
-     * @param FilmElement movie 
+     * @param movie - Movie object to get the actors of
      */
-    public ArrayList<String> getAllActors(FilmElement movie){
+    public ArrayList<String> getAllActors(Movie movie){
         ArrayList<String> list = new ArrayList<String>();
         int index = -1;
         if(isVertex(movie)){
@@ -452,7 +447,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 if (currentArcsList.size() != 0) { //if there's actually more nodes connected to it
                     for (int i = 0; i < currentArcsList.size(); i ++) {
                         if (!visited[vertices.indexOf(currentArcsList.get(i))]) {  //if it hasn't been visited yet
-                            firstInLevel = currentArcsList.get(i); //TODO this line will probably cause bugs, trying to assign new firstInLevel
+                            firstInLevel = currentArcsList.get(i);
                         }
                     }
                 }
@@ -484,7 +479,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
         System.out.println(s1);
         s1.saveTGF("test1.tgf");
         System.out.println("Testing getAllActors()");
-        ArrayList<String> a1 = s1.getAllActors(s1.findVertex("The Jungle Book"));
+        ArrayList<String> a1 = s1.getAllActors((Movie) s1.findVertex("The Jungle Book"));
         for(String n: a1){
             System.out.print(n+", ");
         }

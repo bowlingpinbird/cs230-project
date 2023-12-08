@@ -5,12 +5,10 @@
  * @author Sophie Lin
  * @author Rachel Hu
  * @author Lilymoon Whalen
- * @version December 6, 2023
+ * @version December 8, 2023
  */
 
 import java.util.Vector;
-import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.Hashtable;
 
 public class Actor extends FilmElement {
@@ -21,12 +19,8 @@ public class Actor extends FilmElement {
      * corresponding information of a given role in a given movie is placed in the
      * same index across all vectors
      */
-    private Dictionary<String, Role> roleInfo; // given a movie name, we can see the role assoicated with such movie
+    private Hashtable<String, Role> roleInfo; // given a movie name, we can see the role assoicated with such movie
     private Vector<Movie> movies; // list of movies the actor has participated in
-   // private Vector<String> roles; // all roles the actor has played
-   // private Vector<String> roleTypes; // types of roles of the actor's roles
-    //private Vector<Integer> billings; // billing of each role
-    //private Vector<String> genders; // gender of each role played
 
     /**
      * Constructor for a new Actor based on name
@@ -39,10 +33,6 @@ public class Actor extends FilmElement {
         roleInfo = new Hashtable<>();
 
         movies = new Vector<Movie>();
-       // roles = new Vector<String>();
-       // roleTypes = new Vector<String>();
-       // billings = new Vector<Integer>();
-       // genders = new Vector<String>();
     }
 
     /**
@@ -77,14 +67,8 @@ public class Actor extends FilmElement {
         roleInfo.put(movieName, role);
         this.movies.add(new Movie(movieName));
 
-        //this.roles.add(roleName);
-        //this.roleTypes.add(roleTypeName);
-        //this.billings.add(Integer.parseInt(billing));
-        //this.genders.add(genderName);
         roleCount++;
     }
-
-    
 
     /**
      * Returns a String list of all the movies this Actor has played in
@@ -98,18 +82,44 @@ public class Actor extends FilmElement {
         }
         return description;
     }
-    /** gets the gender assiociated with specific movie
+
+    /** 
+     * gets the gender assiociated with specific movie
      * 
-     * @return
+     * @return String of the gender
      */
     public String genderAssociatedWithMovie(String movieName){
         Role temp = roleInfo.get(movieName);
         return temp.getGender();
     }
 
-    public String toString() {
-        return name;
+    /**
+     * Gets information about this Actor's role in a given movie
+     * @param movieName name of the movie to get this Actor's role from
+     * @return the Role object that has information about the role
+     */
+    public Role getRoleFromMovie(String movieName) {
+        return roleInfo.get(movieName);
     }
 
-    // TODO ask Takis about what he means with main() to show how we use this class
+    /**
+     * Returns a String description of this Actor
+     * @return the description
+     */
+    public String toString() {
+        String description = this.name + "\nMovies and roles:\n";
+        for (Movie movie : this.movies) {
+            description += movie.getName() + "Role information: " + roleInfo.get(movie.getName()).toString(); //TODO CAUSING RUNTIME ERRORS
+        }
+        return description;
+    }
+
+    /**
+     * Main method for testing
+     */
+    public static void main(String[] args) {
+        Actor a1 = new Actor("me");
+        a1.addRole("movie", "person", "leading", "1", "female");
+        System.out.println(a1);
+    }
 }

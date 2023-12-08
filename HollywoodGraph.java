@@ -507,10 +507,11 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 if(temp.getType().equals("Movie")){
                     writer.print(vertices.get(i));
                     double test = upholdTest((Movie)temp);
+                    double percentage =  (double)Math.round(test*10000)/100;
                     if (test >= .50){
-                        writer.print( ": Cast is " + test*100 + "% female PASSES the Uphold Test" );
+                        writer.print( ": Cast is " + percentage+ "% female PASSES the Uphold Test" );
                     } else {
-                        writer.print(": Cast is " + test*100 + "% female FAILS the Uphold Test");
+                        writer.print(": Cast is " + percentage + "% female FAILS the Uphold Test");
                     }
                         writer.println();
                 }

@@ -1,50 +1,50 @@
-Boo! A Madea Halloween: Cast is 19.047619047619047% female FAILS the Uphold Test
-Hidden Figures: Cast is 33.33333333333333% female FAILS the Uphold Test
-Sully: Cast is 24.59016393442623% female FAILS the Uphold Test
+Boo! A Madea Halloween: Cast is 19.05% female FAILS the Uphold Test
+Hidden Figures: Cast is 33.33% female FAILS the Uphold Test
+Sully: Cast is 24.59% female FAILS the Uphold Test
 The Girl on the Train: Cast is 35.0% female FAILS the Uphold Test
 Don't Breathe: Cast is 50.0% female PASSES the Uphold Test
 10 Cloverfield Lane: Cast is 30.0% female FAILS the Uphold Test
 Bad Moms: Cast is 62.5% female PASSES the Uphold Test
-La La Land: Cast is 40.816326530612244% female FAILS the Uphold Test
+La La Land: Cast is 40.82% female FAILS the Uphold Test
 Arrival: Cast is 35.0% female FAILS the Uphold Test
-Storks: Cast is 28.000000000000004% female FAILS the Uphold Test
-Hacksaw Ridge: Cast is 5.555555555555555% female FAILS the Uphold Test
-Star Trek Beyond: Cast is 26.08695652173913% female FAILS the Uphold Test
-Pete's Dragon: Cast is 26.82926829268293% female FAILS the Uphold Test
-Sing: Cast is 29.09090909090909% female FAILS the Uphold Test
-The Purge: Election Year: Cast is 26.82926829268293% female FAILS the Uphold Test
-The Boss: Cast is 48.64864864864865% female FAILS the Uphold Test
+Storks: Cast is 28.0% female FAILS the Uphold Test
+Hacksaw Ridge: Cast is 5.56% female FAILS the Uphold Test
+Star Trek Beyond: Cast is 26.09% female FAILS the Uphold Test
+Pete's Dragon: Cast is 26.83% female FAILS the Uphold Test
+Sing: Cast is 29.09% female FAILS the Uphold Test
+The Purge: Election Year: Cast is 26.83% female FAILS the Uphold Test
+The Boss: Cast is 48.65% female FAILS the Uphold Test
 The Magnificent Seven: Cast is 6.25% female FAILS the Uphold Test
 Zootopia: Cast is 31.25% female FAILS the Uphold Test
-Doctor Strange: Cast is 27.586206896551722% female FAILS the Uphold Test
-The Accountant: Cast is 24.137931034482758% female FAILS the Uphold Test
-Suicide Squad: Cast is 18.51851851851852% female FAILS the Uphold Test
+Doctor Strange: Cast is 27.59% female FAILS the Uphold Test
+The Accountant: Cast is 24.14% female FAILS the Uphold Test
+Suicide Squad: Cast is 18.52% female FAILS the Uphold Test
 Now You See Me 2: Cast is 25.0% female FAILS the Uphold Test
-Teenage Mutant Ninja Turtles: Out of the Shadows: Cast is 21.73913043478261% female FAILS the Uphold Test
-Lights Out: Cast is 71.42857142857143% female PASSES the Uphold Test
-Rogue One: A Star Wars Story: Cast is 18.181818181818183% female FAILS the Uphold Test
-Fantastic Beasts and Where to Find Them: Cast is 26.229508196721312% female FAILS the Uphold Test
-Sausage Party: Cast is 24.242424242424242% female FAILS the Uphold Test
+Teenage Mutant Ninja Turtles: Out of the Shadows: Cast is 21.74% female FAILS the Uphold Test
+Lights Out: Cast is 71.43% female PASSES the Uphold Test
+Rogue One: A Star Wars Story: Cast is 18.18% female FAILS the Uphold Test
+Fantastic Beasts and Where to Find Them: Cast is 26.23% female FAILS the Uphold Test
+Sausage Party: Cast is 24.24% female FAILS the Uphold Test
 Ride Along 2: Cast is 30.0% female FAILS the Uphold Test
-The Conjuring 2: The Enfield Poltergeist: Cast is 46.875% female FAILS the Uphold Test
-The Legend of Tarzan: Cast is 17.24137931034483% female FAILS the Uphold Test
-Captain America: Civil War: Cast is 23.076923076923077% female FAILS the Uphold Test
-The Divergent Series: Allegiant: Cast is 39.56043956043956% female FAILS the Uphold Test
-Ice Age: Collision Course: Cast is 33.33333333333333% female FAILS the Uphold Test
-Jason Bourne: Cast is 13.953488372093023% female FAILS the Uphold Test
+The Conjuring 2: The Enfield Poltergeist: Cast is 46.88% female FAILS the Uphold Test
+The Legend of Tarzan: Cast is 17.24% female FAILS the Uphold Test
+Captain America: Civil War: Cast is 23.08% female FAILS the Uphold Test
+The Divergent Series: Allegiant: Cast is 39.56% female FAILS the Uphold Test
+Ice Age: Collision Course: Cast is 33.33% female FAILS the Uphold Test
+Jason Bourne: Cast is 13.95% female FAILS the Uphold Test
 X-Men: Apocalypse: Cast is 20.0% female FAILS the Uphold Test
-Alice Through the Looking Glass: Cast is 39.130434782608695% female FAILS the Uphold Test
-The Jungle Book: Cast is 18.181818181818183% female FAILS the Uphold Test
-Batman v Superman: Dawn of Justice: Cast is 29.508196721311474% female FAILS the Uphold Test
-Moana: Cast is 42.857142857142854% female FAILS the Uphold Test
-Miss Peregrine's Home for Peculiar Children: Cast is 30.18867924528302% female FAILS the Uphold Test
-Independence Day: Resurgence: Cast is 28.57142857142857% female FAILS the Uphold Test
-The Angry Birds Movie: Cast is 36.17021276595745% female FAILS the Uphold Test
-The Secret Life of Pets: Cast is 19.35483870967742% female FAILS the Uphold Test
-Finding Dory: Cast is 28.57142857142857% female FAILS the Uphold Test
+Alice Through the Looking Glass: Cast is 39.13% female FAILS the Uphold Test
+The Jungle Book: Cast is 18.18% female FAILS the Uphold Test
+Batman v Superman: Dawn of Justice: Cast is 29.51% female FAILS the Uphold Test
+Moana: Cast is 42.86% female FAILS the Uphold Test
+Miss Peregrine's Home for Peculiar Children: Cast is 30.19% female FAILS the Uphold Test
+Independence Day: Resurgence: Cast is 28.57% female FAILS the Uphold Test
+The Angry Birds Movie: Cast is 36.17% female FAILS the Uphold Test
+The Secret Life of Pets: Cast is 19.35% female FAILS the Uphold Test
+Finding Dory: Cast is 28.57% female FAILS the Uphold Test
 Kung Fu Panda 3: Cast is 25.0% female FAILS the Uphold Test
-Trolls: Cast is 46.875% female FAILS the Uphold Test
-Passengers: Cast is 40.74074074074074% female FAILS the Uphold Test
-Ghostbusters: Cast is 29.629629629629626% female FAILS the Uphold Test
-Deadpool: Cast is 32.35294117647059% female FAILS the Uphold Test
+Trolls: Cast is 46.88% female FAILS the Uphold Test
+Passengers: Cast is 40.74% female FAILS the Uphold Test
+Ghostbusters: Cast is 29.63% female FAILS the Uphold Test
+Deadpool: Cast is 32.35% female FAILS the Uphold Test
 Central Intelligence: Cast is 16.0% female FAILS the Uphold Test

@@ -21,12 +21,12 @@ public class Actor extends FilmElement {
      * corresponding information of a given role in a given movie is placed in the
      * same index across all vectors
      */
-    private Dictionary<String, Role> roleInfo;
+    private Dictionary<String, Role> roleInfo; // given a movie name, we can see the role assoicated with such movie
     private Vector<Movie> movies; // list of movies the actor has participated in
-    private Vector<String> roles; // all roles the actor has played
-    private Vector<String> roleTypes; // types of roles of the actor's roles
-    private Vector<Integer> billings; // billing of each role
-    private Vector<String> genders; // gender of each role played
+   // private Vector<String> roles; // all roles the actor has played
+   // private Vector<String> roleTypes; // types of roles of the actor's roles
+    //private Vector<Integer> billings; // billing of each role
+    //private Vector<String> genders; // gender of each role played
 
     /**
      * Constructor for a new Actor based on name
@@ -39,10 +39,10 @@ public class Actor extends FilmElement {
         roleInfo = new Hashtable<>();
 
         movies = new Vector<Movie>();
-        roles = new Vector<String>();
-        roleTypes = new Vector<String>();
-        billings = new Vector<Integer>();
-        genders = new Vector<String>();
+       // roles = new Vector<String>();
+       // roleTypes = new Vector<String>();
+       // billings = new Vector<Integer>();
+       // genders = new Vector<String>();
     }
 
     /**
@@ -84,11 +84,7 @@ public class Actor extends FilmElement {
         roleCount++;
     }
 
-    public int getMovieIndex(Movie temp){
-        for(int i = 0; i < movies.size(); i++){
-            movies.get(i).equals(temp)
-        }
-        }
+    
 
     /**
      * Returns a String list of all the movies this Actor has played in

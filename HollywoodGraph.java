@@ -44,8 +44,6 @@ public class HollywoodGraph implements Graph<FilmElement> {
             String[] info; // stores the array created after line gets split
 
             scan.nextLine();// get rid of first line
-            // fence post, brute force solve
-
             Movie movie;
             Actor actor;
 

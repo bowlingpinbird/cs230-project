@@ -366,8 +366,8 @@ public class HollywoodGraph implements Graph<FilmElement> {
      * 
      * @param FilmElement movie 
      */
-    public ArrayList getAllActors(FilmElement movie){
-        ArrayList list = new ArrayList<String>();
+    public ArrayList<String> getAllActors(FilmElement movie){
+        ArrayList<String> list = new ArrayList<String>();
         int index = -1;
         if(isVertex(movie)){
             for (int i = 0; i < vertices.size(); i ++) {
@@ -376,19 +376,20 @@ public class HollywoodGraph implements Graph<FilmElement> {
             } 
         }
         for(int i = 0; i < arcs.get(index).size(); i++){
-            list.add(arcs.get(index).get(i));
+            list.add(arcs.get(index).get(i).getName());
         }
         return list;
     }
 
     
     public static void main(String[] args) {
-        HollywoodGraph s1 = new HollywoodGraph("bechdelProject_testing.txt");
+        HollywoodGraph s1 = new HollywoodGraph("data/nextBechdel_castGender.txt");
         System.out.println(s1);
         s1.saveTGF("test1.tgf");
-        ArrayList<String> a1 = getAllActors(s1.getVertex(findVertex("The Jungle Book")));
+        System.out.println("Testing getAllActors()");
+        ArrayList<String> a1 = s1.getAllActors(s1.findVertex("The Jungle Book"));
         for(String n: a1){
-            System.out.println(n);
+            System.out.print(n+", ");
         }
         
     }

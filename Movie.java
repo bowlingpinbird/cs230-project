@@ -67,10 +67,6 @@ public class Movie extends FilmElement {
      * @return the description
      */
     public String toString() {
-        String description = this.name;
-        for (Actor actor : actors) {
-            description += this.actors.toString() + "\n";
-        }
-        return description;
+        return name;
     }
 }

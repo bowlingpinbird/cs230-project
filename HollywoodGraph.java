@@ -1,5 +1,6 @@
+
 /**
- * Creates a graph representing the relationship between various omvies and actors based on an input file, along with methods to analyze the graph
+ * Creates a graph representing the relationship between various movies and actors based on an input file, along with methods to analyze the graph
  * 
  * @author Sophie Lin
  * @author Rachel Hu
@@ -39,15 +40,15 @@ public class HollywoodGraph implements Graph<FilmElement> {
     public HollywoodGraph(String dataFileName) {
         this.arcs = new Vector<LinkedList<FilmElement>>();
         this.vertices = new Vector<FilmElement>();
-
         try {
             Scanner scan = new Scanner(new File(dataFileName));
             String line;
             String[] info; // stores the array created after line gets split
 
             scan.nextLine();// get rid of first line
+            // fence post, brute force solve
 
-            Movie movie; // temporary variables to hold data
+            Movie movie;
             Actor actor;
 
             while (scan.hasNextLine()) {
@@ -62,11 +63,12 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 actor = new Actor(info[1]);
 
                 if (!filmElementAdded(movie)) {
-                    this.addVertex(movie); // if movie isn't in verticies already, make a new one
+                    this.addVertex(movie); // if movie isn'FilmElement in verticies already, make a new one
                 } else {
                     for (int i = 0; i < vertices.size(); i++) {
-                        if (vertices.elementAt(i).equals(movie)) {
-                            movie = (Movie) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie" variable point to the preexisting movie
+                        if (vertices.elementAt(i).getName().equals(movie.getName())) {
+                            movie = (Movie) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie"
+                                                                   // variable point to the preexisting movie
                         }
                     }
                 }
@@ -75,13 +77,15 @@ public class HollywoodGraph implements Graph<FilmElement> {
                     this.addVertex(actor);
                 } else {
                     for (int i = 0; i < vertices.size(); i++) {
-                        if (vertices.elementAt(i).equals(actor)) {
-                            actor = (Actor) vertices.elementAt(i); // if movie isn'FilmElement new, then make "actor" variable point to the preexisting movie
+                        if (vertices.elementAt(i).getName().equals(actor.getName())) {
+                            actor = (Actor) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie"
+                                                                   // variable point to the preexisting movie
                         }
                     }
                 }
 
-                actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role, Billing, Gender
+                actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role,
+                                                                            // Billing, Gender
                 movie.addActor(actor);
                 this.addEdge(actor, movie);
             }
@@ -191,7 +195,8 @@ public class HollywoodGraph implements Graph<FilmElement> {
     }
 
     /**
-     * Gets the FilmElement object stored in vertecies based on the name of a Movie or Actor
+     * Gets the FilmElement object stored in vertecies based on the name of a Movie
+     * or Actor
      * 
      * @param String name - name of the Movie or Actor
      * @return FilmElement with the given name
@@ -373,7 +378,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
      * movie
      * 
      * @param movie - Movie object to get the actors of
-     *        null if the movie provided is not in the list of vertecies
+     *              null if the movie provided is not in the list of vertecies
      */
     public ArrayList<String> getAllActors(Movie movie) {
         ArrayList<String> list = new ArrayList<String>();
@@ -405,13 +410,10 @@ public class HollywoodGraph implements Graph<FilmElement> {
      * @param a2 name of the second actor
      * @return separation number (-1 if there is no connection between the two
      *         actors)
-     * 
-     * //TODO loop doesn't terminate if there's no connectionb between two actors
      */
     public int separation(String a1, String a2) {
         int level = -1;
-        // create array to store if an element has been visisted. the index corresponds
-        // with the index of the element in this.vertecies, then mark all as unvisited
+        // create array to store if an element has been visisted. the index corresponds with the index of the element in this.vertecies, then mark all as unvisited
         boolean[] visited = new boolean[this.vertices.size()];
         for (int i = 0; i < visited.length; i++) {
             visited[i] = false;
@@ -448,36 +450,52 @@ public class HollywoodGraph implements Graph<FilmElement> {
         while (!queue.isEmpty() && keepGoing) {
             FilmElement current = queue.dequeue();
             int currentIndex = vertices.indexOf(current);
-
+            
             if (current.equals(firstInLevel)) {
                 level++;
-                if (current.equals(actor2)) { // check if this is the vertex we want for actor2
-                    found = true;
-                    keepGoing = false;
-                    break;
-                }
                 LinkedList<FilmElement> currentArcsList = arcs.elementAt(currentIndex);
                 if (currentArcsList.size() != 0) { // if there's actually more nodes connected to it
                     for (int i = 0; i < currentArcsList.size(); i++) {
                         if (!visited[vertices.indexOf(currentArcsList.get(i))]) { // if it hasn't been visited yet
                             firstInLevel = currentArcsList.get(i);
+                            queue.enqueue(firstInLevel);
+                            visited[vertices.indexOf(firstInLevel)] = true;
+                            break;
                         }
                     }
                 }
-                queue.enqueue(firstInLevel);
             }
-
-            for (int index = 0; index < this.getNumVertices(); index++) {
-                if (isArc(current, vertices.elementAt(index)) && !visited[index]) { // for every index that hasn't been
-                                                                                    // visited yet and if it has an arc
-                                                                                    // with next
+            if (current.equals(actor2)) {
+                found = true;
+                break;
+            }
+            
+            for (int index = 0; index < this.getNumVertices(); index++) { // TODO more efficient if search through arcs?
+                if (isArc(current, vertices.elementAt(index)) && !visited[index]) { // for every index that hasn't been visited yet and if it has an arc with next
                     FilmElement adjcacent = vertices.elementAt(index);
-                    if (adjcacent.equals(actor2)) {
-                        found = true;
-                        keepGoing = false;
-                        break;
+
+                    //check if there's any firstInLevels left in the queue
+                    ArrayQueue<FilmElement> tempQueue = new ArrayQueue<FilmElement>();
+                    int queueSizeHolder = queue.size();
+                    FilmElement tempFilmElement;
+                    boolean hasMoreFirsts = false;
+                    for (int rep = 0; rep < queueSizeHolder; rep ++) {
+                        tempFilmElement = queue.dequeue();
+                        if (tempFilmElement.equals(firstInLevel)) {
+                            hasMoreFirsts = true;
+                        }
+                        queue.enqueue(tempFilmElement);
                     }
-                    queue.enqueue(vertices.elementAt(index));
+
+                    /*
+                     * if current isn't the firstInLevel, 
+                     * but there's no firstInLevel's in the queue behind it, 
+                     * then the next thing added is the firstInLevel for the next level
+                     */
+                    if (!current.equals(firstInLevel) && !hasMoreFirsts) { 
+                        firstInLevel = adjcacent;
+                    }
+                    queue.enqueue(adjcacent);
                     visited[index] = true;
                 }
             }
@@ -491,6 +509,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     /**
      * Bechdel Uphold test, tests if a cast for a movie is at least 50% women
+     * 
      * @param movie - movie to analyze
      */
     public double upholdTest(Movie movie) {
@@ -502,24 +521,28 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 countF++;
             }
         }
-        return (double)countF/ actors.size();
+        return (double) countF / actors.size();
     }
 
+    /**
+     * //TODO NEED DOCUMENTATION
+     * @param fileName
+     */
     public void saveUpholdTest(String fileName) {
         try {
             PrintWriter writer = new PrintWriter(new File(fileName));
             for (int i = 0; i < vertices.size(); i++) {
                 FilmElement temp = vertices.get(i);
-                if(temp.getType().equals("Movie")){
+                if (temp.getType().equals("Movie")) {
                     writer.print(vertices.get(i));
-                    double test = upholdTest((Movie)temp);
-                    double percentage =  (double)Math.round(test*10000)/100;
-                    if (test >= .50){
-                        writer.print( ": Cast is " + percentage+ "% female PASSES the Uphold Test" );
+                    double test = upholdTest((Movie) temp);
+                    double percentage = (double) Math.round(test * 10000) / 100;
+                    if (test >= .50) {
+                        writer.print(": Cast is " + percentage + "% female PASSES the Uphold Test");
                     } else {
                         writer.print(": Cast is " + percentage + "% female FAILS the Uphold Test");
                     }
-                        writer.println();
+                    writer.println();
                 }
             }
             writer.close();
@@ -527,6 +550,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
             System.out.println("***ERROR***" + fileName + " could not be written");
         }
     }
+
     public static void main(String[] args) {
         HollywoodGraph s1 = new HollywoodGraph("data/nextBechdel_castGender.txt");
         System.out.println(s1);
@@ -534,12 +558,12 @@ public class HollywoodGraph implements Graph<FilmElement> {
         s1.saveUpholdTest("bechdelProject_testing.txt");
 
         System.out.println("testing separation: expected 1");
-        System.out.println(s1.separation("Takis", "Stella"));
+        System.out.println(s1.separation(//replace with actors to test from large data set bc my computer is stoopid));
 
         System.out.println("Testing getAllActors()");
         ArrayList<String> a1 = s1.getAllActors((Movie) s1.findVertex("The Jungle Book"));
-        for(String n: a1){
-            System.out.print(n+", ");
+        for (String n : a1) {
+            System.out.print(n + ", ");
         }
     }
 }

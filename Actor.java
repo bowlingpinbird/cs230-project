@@ -107,11 +107,7 @@ public class Actor extends FilmElement {
      * @return the description
      */
     public String toString() {
-        String description = this.name + "\nMovies and roles:\n";
-        for (Movie movie : this.movies) {
-            description += movie.getName() + "Role information: " + roleInfo.get(movie.getName()).toString(); //TODO CAUSING RUNTIME ERRORS
-        }
-        return description;
+        return name;
     }
 
     /**

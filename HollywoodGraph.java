@@ -470,7 +470,6 @@ public class HollywoodGraph implements Graph<FilmElement> {
                     FilmElement adjcacent = vertices.elementAt(index);
 
                     //check if there's any firstInLevels left in the queue
-                    ArrayQueue<FilmElement> tempQueue = new ArrayQueue<FilmElement>();
                     int queueSizeHolder = queue.size();
                     FilmElement tempFilmElement;
                     boolean hasMoreFirsts = false;

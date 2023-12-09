@@ -25,14 +25,6 @@ public class HollywoodGraph implements Graph<FilmElement> {
     private Vector<LinkedList<FilmElement>> arcs; // Lists of adjacent vertices
 
     /**
-     * Default constructor
-     */
-    public HollywoodGraph() {
-        this.arcs = new Vector<LinkedList<FilmElement>>();
-        this.vertices = new Vector<FilmElement>();
-    }
-
-    /**
      * Constructs a HollywoodGraph with data from a given source file
      * 
      * @param dataFileName file path of source file
@@ -99,7 +91,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
      * Determines if this graph is empty or not based on the number of vertices it
      * has
      * 
-     * @return true if the graph is empty
+     * @return true if the graph is empty,
      *         false if not
      */
     public boolean isEmpty() {
@@ -134,8 +126,8 @@ public class HollywoodGraph implements Graph<FilmElement> {
      * 
      * @param vertex1
      * @param vertex2
-     * @return true if there is an arc between the two verticies
-     *         false if there is not an arc
+     * @return true if there is an arc between the two verticies,
+     *         false if there is not an arc,
      *         false, and prints a warning, if a vertex is invalid
      */
     public boolean isArc(FilmElement vertex1, FilmElement vertex2) {
@@ -170,7 +162,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     /**
      * Removes the input vertex from the graph.
-     * If the input vertex does not belong in the graph, the graph is not changed.
+     * If the input vertex does not belong in the graph, the graph is not changed, and a warning is printed.
      * Uses equals() for identidying the vertex to be removed.
      * 
      * @param FilmElement The vertex to be removed.
@@ -191,6 +183,8 @@ public class HollywoodGraph implements Graph<FilmElement> {
             int targetVertIndex = this.vertices.indexOf(vertex);
             this.vertices.remove(vertex);
             this.arcs.remove(targetVertIndex);
+        } else {
+            System.out.println("removeVertex: vertex not found");
         }
     }
 
@@ -264,15 +258,17 @@ public class HollywoodGraph implements Graph<FilmElement> {
      * 
      * @param vertex1
      * @param vertex2
-     * @return true if there is an edge
-     *         false if there is not an edge
+     * @return true if there is an edge,
+     *         false if there is not an edge,
+     *         false and prints warning if one vertex is invalid
      */
     public boolean isEdge(FilmElement vertex1, FilmElement vertex2) {
         return isArc(vertex1, vertex2) && isArc(vertex2, vertex1);
     }
 
     /**
-     * Adds an edge between the two specified verticies
+     * Adds an edge between the two specified verticies.
+     * Does nothing if one of the verticies is invalid (carried over from addArc)
      * 
      * @param vertex1
      * @param vertex2
@@ -284,6 +280,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     /**
      * Removes the edge between two specified vertecies
+     * Does nothing if one of the verticies is invalid (carried over from removeArc)
      * 
      * @param vertex1
      * @param vertex2
@@ -307,7 +304,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
     /**
      * Checks if the given FilmElement has been added to this.vertecies already
      * 
-     * @param element
+     * @param element - element to check for
      * @return true if the element has been added
      *         false if the element has not been added
      */
@@ -322,7 +319,6 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
     /**
      * Saves the current information into a tgf file
-     * 
      * @param String tgf_file_name the name of the tgf file
      */
     public void saveTGF(String tgf_file_name) {
@@ -351,9 +347,8 @@ public class HollywoodGraph implements Graph<FilmElement> {
     }
 
     /**
-     * Returns a string representation of the graph.
-     *
-     * @return String a string representation of this graph
+     * Returns a String description of the graph.
+     * @return the description 
      */
     public String toString() {
         if (vertices.size() == 0)
@@ -525,8 +520,8 @@ public class HollywoodGraph implements Graph<FilmElement> {
     }
 
     /**
-     * //TODO NEED DOCUMENTATION
-     * @param fileName
+     * Saves results from the Uphold test to a specfied .txt file
+     * @param fileName - path of the file to save to
      */
     public void saveUpholdTest(String fileName) {
         try {

@@ -9,3 +9,6 @@
 "Beta","Takis","Aunt Bam","Supporting","2","Female"
 "Gamma","Tyler Perry","Madea/Joe/Brian","Leading","1","Male"
 "Gamma","Cassi Davis","Aunt Bam","Supporting","2","Female"
+"Gamma","Me","You","Supporting","1","Female"
+"Delta","Me","you2","leading","3","Female"
+"Delta","You","you3","leading","4","Female"

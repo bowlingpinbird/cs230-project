@@ -1,4 +1,3 @@
-
 /**
  * Creates a graph representing the relationship between various movies and actors based on an input file, along with methods to analyze the graph
  * 
@@ -514,25 +513,44 @@ public class HollywoodGraph implements Graph<FilmElement> {
         }
         return level / 2;
     }
-/**
- * Writes  to an output file. Displays an
-* error message if the output file cannot be created.
-* @param ArrayList<String> list of movies/actors to be printed out
- * @param outFileName the file name to be outputted
- * @param String name of the actor/movie
- * 
- */
-public static void writeToFile(ArrayList<String> a1, String outFileName, String name){
-    try{
-        PrintWriter writer = new PrintWriter (outFileName);  
-        writer.println("Finding all movies/actors for "  + name + ":");
-        for(String n: a1)
-            writer.print(n+", ");
-        writer.close();
-    }catch (IOException ex) {
-    System.out.println(ex); // Handle file-not-found
+
+    /**
+     * Calculates the separation between two actors using this.separation(), and writes the results to the given file name
+     * @param outFileName - filePath of the file to write the results to
+     * @param a1Name - name of the first actor
+     * @param a2Name - name of the second actor
+     */
+    public  void writeSeparationToFile(String outFileName, String a1Name, String a2Name) {
+        try {
+            PrintWriter writer = new PrintWriter(outFileName);
+            writer.println("Number of movies separating " + a1Name + " and " + a2Name + ": " + this.separation(a1Name, a2Name));
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e); //handles outFileName file not found
+        }
+        
     }
-}
+
+    /**
+     * Writes all actors to an output file. Displays an
+     * error message if the output file cannot be created.
+     * 
+     * @param ArrayList<String> list of movies/actors to be printed out
+     * @param outFileName       the file name to be outputted
+     * @param String            name of the actor/movie
+     * 
+     */
+    public static void writeListToFile(ArrayList<String> a1, String outFileName, String name) {
+        try {
+            PrintWriter writer = new PrintWriter(outFileName);
+            writer.println("Finding all movies/actors for " + name + ":");
+            for (String n : a1)
+                writer.print(n + ", ");
+            writer.close();
+        } catch (IOException ex) {
+            System.out.println(ex); // Handle file-not-found
+        }
+    }
 
     /**
      * Bechdel Uphold test, tests if a cast for a movie is at least 50% women
@@ -582,16 +600,20 @@ public static void writeToFile(ArrayList<String> a1, String outFileName, String 
         HollywoodGraph s1 = new HollywoodGraph("data/nextBechdel_castGender.txt");
         System.out.println(s1);
         s1.saveTGF("test1.tgf");
-        //s1.saveUpholdTest("bechdelProject_testing.txt");
-
-        System.out.println("testing separation: expected 1");
-        //System.out.println(s1.separation(//replace with actors to test from large data set bc my computer is stoopid));
-
+        
         System.out.println("Testing getAllActors()");
         ArrayList<String> a1 = s1.getAllActors(s1.findVertex("The Jungle Book"));
-        s1.writeToFile(a1, "bechdelProject_testing.txt", "The Jungle Book");
+        HollywoodGraph.writeListToFile(a1, "bechdelProject_testing.txt", "The Jungle Book");
+        
         System.out.println("Testing getAllMovies()");
         ArrayList<String> a2 = s1.getAllMovies(s1.findVertex("Jennifer Lawrence"));
-        s1.writeToFile(a2, "bechdelProject_testing1.txt", "Jennifer Lawrence");
+        HollywoodGraph.writeListToFile(a2, "bechdelProject_testing1.txt", "Jennifer Lawrence");
+
+        System.out.println("testing separation()");
+        s1.writeSeparationToFile("bechdelProject_testing", "Megan Fox", "Tyler Perry");
+        s1.writeSeparationToFile("bechdelProject_testing", "Nick Arapoglou", "Tyler Perry");
+
+        System.out.println("Testing Bechdel test");
+        s1.saveUpholdTest("bechdelProject_testing.txt");
     }
 }

@@ -370,8 +370,9 @@ public class HollywoodGraph implements Graph<FilmElement> {
     }
 
     /**
-     * 
+     * Returns all the actors from the given movie
      * @param FilmElement movie 
+     * @return ArrayList<String> all the actors from the given movie 
      */
     public ArrayList<String> getAllActors(FilmElement movie){
         ArrayList<String> list = new ArrayList<String>();
@@ -388,7 +389,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
         return list;
     }
 
-    
+   
     /**
      * Calculates the number of movies separating one actor from another.
      * If they played in a movie together, the separation number is 0.
@@ -478,6 +479,25 @@ public class HollywoodGraph implements Graph<FilmElement> {
         }
         return level / 2;
     }
+/**
+ * Writes  to an output file. Displays an
+* error message if the output file cannot be created.
+ * @param outFileName the file name to be outputted
+ */
+public static void writeToFile(ArrayList<String> a1, String outFileName){
+   /* try{
+    PrintWriter writer = new PrintWriter (new File(outFileName));
+    while (reader.hasNext()) {
+    String input = "";
+    for(String n: a1)
+    writer.println(input);
+    }
+    writer.close();
+    reader.close();
+    }catch (IOException ex) {
+    System.out.println(ex); // Handle file-not-found
+    }*/
+}
 
     public static void main(String[] args) {
         HollywoodGraph s1 = new HollywoodGraph("data/nextBechdel_castGender.txt");
@@ -485,7 +505,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
         s1.saveTGF("test1.tgf");
         System.out.println("Testing getAllActors()");
         ArrayList<String> a1 = s1.getAllActors(s1.findVertex("The Jungle Book"));
-        for(String n: a1){
+        for(String n: a1){ //need to write into file
             System.out.print(n+", ");
         }
         

@@ -64,6 +64,7 @@ public class Movie extends FilmElement {
 
     /**
      * Creates a String description of this Movie object
+     * (Consists of just the name)
      * @return the description
      */
     public String toString() {

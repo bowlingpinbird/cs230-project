@@ -413,6 +413,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
      * played in a movie with the second actor,
      * then the first and second actor have a separation number of 1, so on, and so
      * forth.
+     * Completed as a variation of BFS that keeps track of the depth from the starting node as it searches
      * 
      * @param a1 name of the first actor
      * @param a2 name of the second actor
@@ -420,7 +421,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
      *         actors)
      */
     public int separation(String a1, String a2) {
-        int level = -1;
+        int level = -1; //keeps track of the level of depth from the starting node
         // create array to store if an element has been visisted. the index corresponds with the index of the element in this.vertecies, then mark all as unvisited
         boolean[] visited = new boolean[this.vertices.size()];
         for (int i = 0; i < visited.length; i++) {
@@ -437,13 +438,13 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
         // get the Actor object in this.vertecies that corresponds to the actor
         // specified in a1
-        for (int i = 0; i < vertices.size(); i++) {
-            if (vertices.elementAt(i).equals(actor1)) {
-                actor1 = (Actor) vertices.elementAt(i);
+        for (int rep = 0; rep < vertices.size(); rep++) { //O(n)
+            if (vertices.elementAt(rep).equals(actor1)) {
+                actor1 = (Actor) vertices.elementAt(rep);
             }
             // same as above, just for a2
-            if (vertices.elementAt(i).equals(actor2)) {
-                actor2 = (Actor) vertices.elementAt(i);
+            if (vertices.elementAt(rep).equals(actor2)) {
+                actor2 = (Actor) vertices.elementAt(rep);
             }
         }
 
@@ -455,21 +456,19 @@ public class HollywoodGraph implements Graph<FilmElement> {
 
         boolean keepGoing = true;
 
-        while (!queue.isEmpty() && keepGoing) {
+        while (!queue.isEmpty() && keepGoing) { //O(n)
             FilmElement current = queue.dequeue();
             int currentIndex = vertices.indexOf(current);
             
             if (current.equals(firstInLevel)) {
                 level++;
                 LinkedList<FilmElement> currentArcsList = arcs.elementAt(currentIndex);
-                if (currentArcsList.size() != 0) { // if there's actually more nodes connected to it
-                    for (int i = 0; i < currentArcsList.size(); i++) {
-                        if (!visited[vertices.indexOf(currentArcsList.get(i))]) { // if it hasn't been visited yet
-                            firstInLevel = currentArcsList.get(i);
-                            queue.enqueue(firstInLevel);
-                            visited[vertices.indexOf(firstInLevel)] = true;
-                            break;
-                        }
+                for (int rep = 0; rep < currentArcsList.size(); rep++) { //loop through the rest of the nodes
+                    if (!visited[vertices.indexOf(currentArcsList.get(rep))]) { // if it hasn't been visited yet
+                        firstInLevel = currentArcsList.get(rep);
+                        queue.enqueue(firstInLevel);
+                        visited[vertices.indexOf(firstInLevel)] = true;
+                        break;
                     }
                 }
             }
@@ -478,27 +477,22 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 break;
             }
             
-            for (int index = 0; index < this.getNumVertices(); index++) { // TODO more efficient if search through arcs?
+            //check if there's any firstInLevels left in the queue
+            int queueSizeHolder = queue.size();
+            FilmElement tempFilmElement;
+            boolean hasMoreFirsts = false;
+            for (int rep = 0; rep < queueSizeHolder; rep ++) { //O(n)
+                tempFilmElement = queue.dequeue();
+                if (tempFilmElement.equals(firstInLevel)) {
+                    hasMoreFirsts = true;
+                }
+                queue.enqueue(tempFilmElement);
+            }
+
+            for (int index = 0; index < this.getNumVertices(); index++) { // TODO more efficient if search through arcs? //O(n)
                 if (isArc(current, vertices.elementAt(index)) && !visited[index]) { // for every index that hasn't been visited yet and if it has an arc with next
                     FilmElement adjcacent = vertices.elementAt(index);
-
-                    //check if there's any firstInLevels left in the queue
-                    int queueSizeHolder = queue.size();
-                    FilmElement tempFilmElement;
-                    boolean hasMoreFirsts = false;
-                    for (int rep = 0; rep < queueSizeHolder; rep ++) {
-                        tempFilmElement = queue.dequeue();
-                        if (tempFilmElement.equals(firstInLevel)) {
-                            hasMoreFirsts = true;
-                        }
-                        queue.enqueue(tempFilmElement);
-                    }
-
-                    /*
-                     * if current isn't the firstInLevel, 
-                     * but there's no firstInLevel's in the queue behind it, 
-                     * then the next thing added is the firstInLevel for the next level
-                     */
+                    //if current isn't the firstInLevel, but there's no firstInLevel's in the queue behind it, then the next thing added is the firstInLevel for the next level
                     if (!current.equals(firstInLevel) && !hasMoreFirsts) { 
                         firstInLevel = adjcacent;
                     }
@@ -528,7 +522,6 @@ public class HollywoodGraph implements Graph<FilmElement> {
         } catch (FileNotFoundException e) {
             System.out.println(e); //handles outFileName file not found
         }
-        
     }
 
     /**

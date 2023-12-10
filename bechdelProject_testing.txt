@@ -1,11 +1,2 @@
-Bill Murray, 
-Ben Kingsley, 
-Idris Elba, 
-Lupita Nyong'o, 
-Scarlett Johansson, 
-Giancarlo Esposito, 
-Christopher Walken, 
-Neel Sethi, 
-Garry Shandling, 
-Brighton Rose, 
-Jon Favreau, 
+Finding all movies/actors for The Jungle Book:
+Bill Murray, Ben Kingsley, Idris Elba, Lupita Nyong'o, Scarlett Johansson, Giancarlo Esposito, Christopher Walken, Neel Sethi, Garry Shandling, Brighton Rose, Jon Favreau, 

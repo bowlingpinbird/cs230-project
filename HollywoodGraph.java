@@ -391,7 +391,22 @@ public class HollywoodGraph implements Graph<FilmElement> {
         return list;
     }
 
-   
+   /**
+     * Returns all the movies from the given actor
+     * @param FilmElement movie 
+     * @return ArrayList<String> all the actors from the given movie 
+     */
+    public ArrayList<String> getAllMovies(FilmElement actor) {
+        ArrayList<String> list = new ArrayList<String>();
+        for(int i = 0; i < vertices.size();i++){
+            for(int j = 0; j < arcs.get(i).size(); j++){
+                if(arcs.get(i).get(j).getName().equals(actor.getName()))
+                    list.add(vertices.get(i).getName());
+            }
+        }
+        return list;
+    }
+
     /**
      * Calculates the number of movies separating one actor from another.
      * If they played in a movie together, the separation number is 0.
@@ -502,11 +517,15 @@ public class HollywoodGraph implements Graph<FilmElement> {
 /**
  * Writes  to an output file. Displays an
 * error message if the output file cannot be created.
+* @param ArrayList<String> list of movies/actors to be printed out
  * @param outFileName the file name to be outputted
+ * @param String name of the actor/movie
+ * 
  */
-public static void writeToFile(ArrayList<String> a1, String outFileName){
+public static void writeToFile(ArrayList<String> a1, String outFileName, String name){
     try{
         PrintWriter writer = new PrintWriter (outFileName);  
+        writer.println("Finding all movies/actors for "  + name + ":");
         for(String n: a1)
             writer.print(n+", ");
         writer.close();
@@ -570,6 +589,9 @@ public static void writeToFile(ArrayList<String> a1, String outFileName){
 
         System.out.println("Testing getAllActors()");
         ArrayList<String> a1 = s1.getAllActors(s1.findVertex("The Jungle Book"));
-        s1.writeToFile(a1, "bechdelProject_testing.txt");
+        s1.writeToFile(a1, "bechdelProject_testing.txt", "The Jungle Book");
+        System.out.println("Testing getAllMovies()");
+        ArrayList<String> a2 = s1.getAllMovies(s1.findVertex("Jennifer Lawrence"));
+        s1.writeToFile(a2, "bechdelProject_testing1.txt", "Jennifer Lawrence");
     }
 }

@@ -570,10 +570,10 @@ public static void writeToFile(ArrayList<String> a1, String outFileName){
         s1.saveUpholdTest("bechdelProject_testing.txt");
 
         System.out.println("testing separation: expected 1");
-        System.out.println(s1.separation(//replace with actors to test from large data set bc my computer is stoopid));
+        System.out.println(s1.separation)//replace with actors to test from large data set bc my computer is stoopid));
 
         System.out.println("Testing getAllActors()");
-        ArrayList<String> a1 = s1.getAllActors(s1.findVertex("The Jungle Book"));
+        ArrayList<String> a1 = s1.getAllActors( (Movie) s1.findVertex("The Jungle Book"));
         for(String n: a1){ //need to write into file
             System.out.print(n+", ");
         }

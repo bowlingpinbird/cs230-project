@@ -373,7 +373,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
      * @param FilmElement movie 
      * @return ArrayList<String> all the actors from the given movie 
      */
-    public ArrayList<String> getAllActors(Movie movie) {
+    public ArrayList<String> getAllActors(FilmElement movie) {
         ArrayList<String> list = new ArrayList<String>();
         int index = -1;
         if (isVertex(movie)) {
@@ -505,18 +505,14 @@ public class HollywoodGraph implements Graph<FilmElement> {
  * @param outFileName the file name to be outputted
  */
 public static void writeToFile(ArrayList<String> a1, String outFileName){
-   /* try{
-    PrintWriter writer = new PrintWriter (new File(outFileName));
-    while (reader.hasNext()) {
-    String input = "";
-    for(String n: a1)
-    writer.println(input);
-    }
-    writer.close();
-    reader.close();
+    try{
+        PrintWriter writer = new PrintWriter (outFileName);  
+        for(String n: a1)
+            writer.print(n+", ");
+        writer.close();
     }catch (IOException ex) {
     System.out.println(ex); // Handle file-not-found
-    }*/
+    }
 }
 
     /**
@@ -567,15 +563,13 @@ public static void writeToFile(ArrayList<String> a1, String outFileName){
         HollywoodGraph s1 = new HollywoodGraph("data/nextBechdel_castGender.txt");
         System.out.println(s1);
         s1.saveTGF("test1.tgf");
-        s1.saveUpholdTest("bechdelProject_testing.txt");
+        //s1.saveUpholdTest("bechdelProject_testing.txt");
 
         System.out.println("testing separation: expected 1");
-        System.out.println(s1.separation)//replace with actors to test from large data set bc my computer is stoopid));
+        //System.out.println(s1.separation(//replace with actors to test from large data set bc my computer is stoopid));
 
         System.out.println("Testing getAllActors()");
-        ArrayList<String> a1 = s1.getAllActors( (Movie) s1.findVertex("The Jungle Book"));
-        for(String n: a1){ //need to write into file
-            System.out.print(n+", ");
-        }
+        ArrayList<String> a1 = s1.getAllActors(s1.findVertex("The Jungle Book"));
+        s1.writeToFile(a1, "bechdelProject_testing.txt");
     }
 }

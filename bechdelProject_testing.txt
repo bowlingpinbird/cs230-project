@@ -1,4 +1,11 @@
-Alpha: Cast is 50.0% female PASSES the Uphold Test
-Beta: Cast is 75.0% female PASSES the Uphold Test
-Gamma: Cast is 66.67% female PASSES the Uphold Test
-Delta: Cast is 100.0% female PASSES the Uphold Test
+Bill Murray, 
+Ben Kingsley, 
+Idris Elba, 
+Lupita Nyong'o, 
+Scarlett Johansson, 
+Giancarlo Esposito, 
+Christopher Walken, 
+Neel Sethi, 
+Garry Shandling, 
+Brighton Rose, 
+Jon Favreau, 

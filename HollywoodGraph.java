@@ -422,6 +422,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
      */
     public int separation(String a1, String a2) {
         int level = -1; //keeps track of the level of depth from the starting node
+        
         // create array to store if an element has been visisted. the index corresponds with the index of the element in this.vertecies, then mark all as unvisited
         boolean[] visited = new boolean[this.vertices.size()];
         for (int i = 0; i < visited.length; i++) {
@@ -431,13 +432,13 @@ public class HollywoodGraph implements Graph<FilmElement> {
         ArrayQueue<FilmElement> queue = new ArrayQueue<FilmElement>(); // queue for BFS
         FilmElement firstInLevel; // keep track of the first FilmElement added to the queue in a given level
 
+
         boolean found = false; // keep track of if a2 has been found from a1 yet
 
         Actor actor1 = new Actor(a1);
         Actor actor2 = new Actor(a2);
 
-        // get the Actor object in this.vertecies that corresponds to the actor
-        // specified in a1
+        // get the Actor object in this.vertecies that corresponds to the actor specified in a1
         for (int rep = 0; rep < vertices.size(); rep++) { //O(n)
             if (vertices.elementAt(rep).equals(actor1)) {
                 actor1 = (Actor) vertices.elementAt(rep);
@@ -449,7 +450,6 @@ public class HollywoodGraph implements Graph<FilmElement> {
         }
 
         int a1Index = this.vertices.indexOf(actor1);
-
         firstInLevel = actor1;
         queue.enqueue(actor1); // enqueue a1 to the queue
         visited[a1Index] = true;
@@ -495,6 +495,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
                     //if current isn't the firstInLevel, but there's no firstInLevel's in the queue behind it, then the next thing added is the firstInLevel for the next level
                     if (!current.equals(firstInLevel) && !hasMoreFirsts) { 
                         firstInLevel = adjcacent;
+                        hasMoreFirsts = true;
                     }
                     queue.enqueue(adjcacent);
                     visited[index] = true;

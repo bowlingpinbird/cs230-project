@@ -9,14 +9,16 @@
  */
 public class FilmElement {
     protected String name; // name of the movie or actor
+    protected String typeOfElement; //stores whether it is a movie or an actor
 
     /**
      * Constructor
      * 
      * @param String name of the element
      */
-    public FilmElement(String name) {
+    public FilmElement(String name, String type) {
         this.name = name;
+        this.typeOfElement = type;
     }
 
     /**
@@ -27,6 +29,10 @@ public class FilmElement {
     public String getName() {
         return name;
     }
+    public String getType(){
+        return typeOfElement;
+    }
+
 
     /**
      * Compares if a given FilmElement is the same as this FilmElement based on

@@ -521,26 +521,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
         return level / 2;
     }
 
-    /**
-     * Writes all actors to an output file. Displays an
-     * error message if the output file cannot be created.
-     * 
-     * @param ArrayList<String> list of movies/actors to be printed out
-     * @param outFileName       the file name to be outputted
-     * @param String            name of the actor/movie
-     * 
-     */
-    public static void writeListToFile(ArrayList<String> a1, String outFileName, String name) {
-        try {
-            PrintWriter writer = new PrintWriter(outFileName);
-            writer.println("Finding all movies/actors for " + name + ":");
-            for (String n : a1)
-                writer.print(n + ", ");
-            writer.close();
-        } catch (IOException ex) {
-            System.out.println(ex); // Handle file-not-found
-        }
-    }
+   
 
     /**
      * Bechdel Uphold test, tests if a cast for a movie is at least 50% women
@@ -599,6 +580,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
             writer.println("Finding all actors for " + "The Jungle Book" + ":");
             for (String n : a1)
                 writer.print(n + ", ");
+            writer.println();
 
             System.out.println("Testing getAllMovies()");
             ArrayList<String> a2 = s1.getAllMovies(s1.findVertex("Jennifer Lawrence"));
@@ -610,14 +592,29 @@ public class HollywoodGraph implements Graph<FilmElement> {
             // writing results to file
             for (String n : a2)
                 a1.add(n);
-            HollywoodGraph.writeListToFile(a1, "bechdelProject_testing.txt", "Jennifer Lawrence");
+            writer.println();
+            writer.println();
 
             writer.println("testing separation()");
             writer.println("Megan Fox to Tyler Perry. Expected: 1. Actual: " + s1.separation("Megan Fox", "Tyler Perry"));
             writer.println("Nick Arapoglou to Tyler Perry. Expected: 3. Actual: " + s1.separation("Nick Arapoglou", "Tyler Perry"));
+writer.println();
 
             System.out.println("Testing Bechdel test");
-            // s1.saveUpholdTest("bechdelProject_testing.txt");
+             for (int i = 0; i < s1.vertices.size(); i++) {
+                FilmElement temp = s1.vertices.get(i);
+                if (temp.getType().equals("Movie")) {
+                    writer.print(s1.vertices.get(i));
+                    double test = s1.upholdTest((Movie) temp);
+                    double percentage = (double) Math.round(test * 10000) / 100;
+                    if (test >= .50) {
+                        writer.print(": Cast is " + percentage + "% female PASSES the Uphold Test");
+                    } else {
+                        writer.print(": Cast is " + percentage + "% female FAILS the Uphold Test");
+                    }
+                    writer.println();
+                }
+            }
             writer.close();
         } catch (IOException ex) {
             System.out.println(ex); // Handle file-not-found

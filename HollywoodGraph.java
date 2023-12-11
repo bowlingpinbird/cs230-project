@@ -622,6 +622,5 @@ public class HollywoodGraph implements Graph<FilmElement> {
         } catch (IOException ex) {
             System.out.println(ex); // Handle file-not-found
         }
-
     }
 }

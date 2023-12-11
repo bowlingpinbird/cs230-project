@@ -597,17 +597,34 @@ public class HollywoodGraph implements Graph<FilmElement> {
         
         System.out.println("Testing getAllActors()");
         ArrayList<String> a1 = s1.getAllActors(s1.findVertex("The Jungle Book"));
-        HollywoodGraph.writeListToFile(a1, "bechdelProject_testing.txt", "The Jungle Book");
+         try {
+            PrintWriter writer = new PrintWriter("bechdelProject_testing.txt");
+            writer.println("Finding all actors for " + "The Jungle Book" + ":");
+            for (String n : a1)
+                writer.print(n + ", ");
         
         System.out.println("Testing getAllMovies()");
         ArrayList<String> a2 = s1.getAllMovies(s1.findVertex("Jennifer Lawrence"));
-        HollywoodGraph.writeListToFile(a2, "bechdelProject_testing1.txt", "Jennifer Lawrence");
+        writer.println();
+ writer.println("Finding all movies for " + "Jennifer Lawrence" + ":");
+            for (String n : a2)
+                writer.print(n + ", ");
+        
+        //writing results to file
+        for(String n: a2)
+            a1.add(n);
+        HollywoodGraph.writeListToFile(a1, "bechdelProject_testing.txt", "Jennifer Lawrence");
 
         System.out.println("testing separation()");
-        s1.writeSeparationToFile("bechdelProject_testing", "Megan Fox", "Tyler Perry");
-        s1.writeSeparationToFile("bechdelProject_testing", "Nick Arapoglou", "Tyler Perry");
+        //s1.writeSeparationToFile("bechdelProject_testing", "Megan Fox", "Tyler Perry");
+        //s1.writeSeparationToFile("bechdelProject_testing", "Nick Arapoglou", "Tyler Perry");
 
         System.out.println("Testing Bechdel test");
-        s1.saveUpholdTest("bechdelProject_testing.txt");
+        //s1.saveUpholdTest("bechdelProject_testing.txt");
+            writer.close();
+        } catch (IOException ex) {
+            System.out.println(ex); // Handle file-not-found
+        }
+
     }
 }

@@ -5,16 +5,16 @@
  * @author Sophie Lin
  * @author Lilymoon Whalen
  * @author Rachel Hu
- * @version December 6, 20223
+ * @version December 12, 20223
  */
 public class FilmElement {
     protected String name; // name of the movie or actor
     protected String typeOfElement; //stores whether it is a movie or an actor
 
     /**
-     * Constructor
-     * 
-     * @param String name of the element
+     * Constructor for a FilmElement based on its name and type
+     * @param name - Name of the FilmElement
+     * @param type - "Movie" or "Actor"
      */
     public FilmElement(String name, String type) {
         this.name = name;
@@ -29,6 +29,11 @@ public class FilmElement {
     public String getName() {
         return name;
     }
+
+    /**
+     * Returns the type of element this FilmElement is (Movie or Actor)
+     * @return String describing the type
+     */
     public String getType(){
         return typeOfElement;
     }

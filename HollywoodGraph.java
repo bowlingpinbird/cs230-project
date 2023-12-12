@@ -497,8 +497,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 queue.enqueue(tempFilmElement);
             }
 
-            for (int index = 0; index < this.getNumVertices(); index++) { // TODO more efficient if search through arcs?
-                                                                          // //O(n)
+            for (int index = 0; index < this.getNumVertices(); index++) {//O(n)
                 if (isArc(current, vertices.elementAt(index)) && !visited[index]) { // for every index that hasn't been
                                                                                     // visited yet and if it has an arc
                                                                                     // with next
@@ -598,7 +597,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
             writer.println("testing separation()");
             writer.println("Megan Fox to Tyler Perry. Expected: 1. Actual: " + s1.separation("Megan Fox", "Tyler Perry"));
             writer.println("Nick Arapoglou to Tyler Perry. Expected: 3. Actual: " + s1.separation("Nick Arapoglou", "Tyler Perry"));
-writer.println();
+            writer.println();
 
             System.out.println("Testing Bechdel test");
              for (int i = 0; i < s1.vertices.size(); i++) {

@@ -16,13 +16,13 @@ public class Role {
     private String billing;
 
     /**
-     * creates a role does not include movie name since it is included in the
-     * Dictionary in actor
+     * Creates a Role .
+     * Does not include movie name since it is used as a key to the Hashtable in Actor
      * 
-     * @param roleName
-     * @param roleTypeName
-     * @param billing
-     * @param genderName
+     * @param roleName - name of the Role
+     * @param roleTypeName - type of role (e.g. Leading)
+     * @param billing - billing number
+     * @param genderName - gender of the role
      */
     public Role(String roleName, String roleTypeName, String billing, String genderName) {
         gender = genderName;
@@ -32,13 +32,15 @@ public class Role {
     }
 
     /**
-     * @return gender of the role actor plays
+     * Gets the gender associated with this Role
+     * @return gender of the role Actor plays
      */
     public String getGender() {
         return gender;
     }
 
     /**
+     * Gets the name of the character that this Role is associated with
      * @return name of the character actor plays
      */
     public String getRoleName() {
@@ -46,18 +48,24 @@ public class Role {
     }
 
     /**
+     * Gets the type of role that this is
      * @return the role type actor plays, e.g. Leading Supporting
      */
     public String getRoleType() {
         return roleType;
     }
 
+    /**
+     * Gets the billing number of this Role
+     * @return the billing number
+     */
     public String getBilling() {
         return billing;
     }
 
     /**
-     * string representation of role actor plays
+     * String representation of role actor plays
+     * @return the String 
      */
     public String toString() {
         return "Role: " + this.roleName + ", Gender: " + this.gender + ", Role type: " + this.roleType + ", Billing: "

@@ -1,7 +1,7 @@
 # Gender Imbalance in a Movie
 Authors: Sophie Lin, Rachel Hu, Lilymoon Whalen
 
-CS230-01 Data Structures [final project](https://docs.google.com/document/d/1IycwGMGrk4UIMnbUNGa4i-qg65y6vre8VQmrD0hJ4Z8/edit)
+CS230-01 Data Structures fall 2023 [final project](https://docs.google.com/document/d/1IycwGMGrk4UIMnbUNGa4i-qg65y6vre8VQmrD0hJ4Z8/edit)
 
 [Report](FinalProject_Lin_Hu_Whalen.pdf) describing our methods, collaboration process, and conclusions.
 

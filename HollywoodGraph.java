@@ -1,11 +1,10 @@
-
 /**
  * Creates a graph representing the relationship between various movies and actors based on an input file, along with methods to analyze the graph
  * 
  * @author Sophie Lin
  * @author Rachel Hu
  * @author Lilymoon Whalen
- * @version December 8, 2023
+ * @version December 12, 2023
  */
 
 import java.io.File;
@@ -59,8 +58,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 } else {
                     for (int i = 0; i < vertices.size(); i++) {
                         if (vertices.elementAt(i).getName().equals(movie.getName())) {
-                            movie = (Movie) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie"
-                                                                   // variable point to the preexisting movie
+                            movie = (Movie) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie" variable point to the preexisting movie
                         }
                     }
                 }
@@ -70,14 +68,12 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 } else {
                     for (int i = 0; i < vertices.size(); i++) {
                         if (vertices.elementAt(i).getName().equals(actor.getName())) {
-                            actor = (Actor) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie"
-                                                                   // variable point to the preexisting movie
+                            actor = (Actor) vertices.elementAt(i); // if movie isn'FilmElement new, then make "movie" variable point to the preexisting movie
                         }
                     }
                 }
 
-                actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role,
-                                                                            // Billing, Gender
+                actor.addRole(info[0], info[2], info[3], info[4], info[5]); // Movie name, character, type of role, Billing, Gender
                 movie.addActor(actor);
                 this.addEdge(actor, movie);
             }
@@ -498,9 +494,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
             }
 
             for (int index = 0; index < this.getNumVertices(); index++) {//O(n)
-                if (isArc(current, vertices.elementAt(index)) && !visited[index]) { // for every index that hasn't been
-                                                                                    // visited yet and if it has an arc
-                                                                                    // with next
+                if (isArc(current, vertices.elementAt(index)) && !visited[index]) { // for every index that hasn't been visited yet and if it has an arc with next
                     FilmElement adjcacent = vertices.elementAt(index);
                     // if current isn't the firstInLevel, but there's no firstInLevel's in the queue
                     // behind it, then the next thing added is the firstInLevel for the next level

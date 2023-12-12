@@ -13,7 +13,7 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 public class Actor extends FilmElement {
-    private int roleCount;
+    private int roleCount; //number of Roles this Actor has played
 
     /*
      * store information about the actor's roles

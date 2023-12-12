@@ -5,7 +5,7 @@
  * @author Sophie Lin
  * @author Rachel Hu
  * 
- * @version December 8, 2023
+ * @version December 12, 2023
  */
 
 public class Role {

@@ -497,8 +497,7 @@ public class HollywoodGraph implements Graph<FilmElement> {
                 queue.enqueue(tempFilmElement);
             }
 
-            for (int index = 0; index < this.getNumVertices(); index++) { // TODO more efficient if search through arcs?
-                                                                          // //O(n)
+            for (int index = 0; index < this.getNumVertices(); index++) {//O(n)
                 if (isArc(current, vertices.elementAt(index)) && !visited[index]) { // for every index that hasn't been
                                                                                     // visited yet and if it has an arc
                                                                                     // with next
@@ -524,11 +523,11 @@ public class HollywoodGraph implements Graph<FilmElement> {
    
 
     /**
-     * Bechdel Uphold test, tests if a cast for a movie is at least 50% women
+     * Our Bechdel test, tests if a cast for a movie is at least 50% women
      * 
      * @param movie - movie to analyze
      */
-    public double upholdTest(Movie movie) {
+    public double newBechdelTest(Movie movie) {
         ArrayList<Actor> actors = movie.getActorList();
         int countF = 0;
         for (int i = 0; i < actors.size(); i++) {
@@ -541,23 +540,23 @@ public class HollywoodGraph implements Graph<FilmElement> {
     }
 
     /**
-     * Saves results from the Uphold test to a specfied .txt file
+     * Saves results from the test test to a specfied .txt file
      * 
      * @param fileName - path of the file to save to
      */
-    public void saveUpholdTest(String fileName) {
+    public void saveBechdelTest(String fileName) {
         try {
             PrintWriter writer = new PrintWriter(new File(fileName));
             for (int i = 0; i < vertices.size(); i++) {
                 FilmElement temp = vertices.get(i);
                 if (temp.getType().equals("Movie")) {
                     writer.print(vertices.get(i));
-                    double test = upholdTest((Movie) temp);
+                    double test = newBechdelTest((Movie) temp);
                     double percentage = (double) Math.round(test * 10000) / 100;
                     if (test >= .50) {
-                        writer.print(": Cast is " + percentage + "% female PASSES the Uphold Test");
+                        writer.print(": Cast is " + percentage + "% female PASSES the Bechdel Test");
                     } else {
-                        writer.print(": Cast is " + percentage + "% female FAILS the Uphold Test");
+                        writer.print(": Cast is " + percentage + "% female FAILS the Bechdel Test");
                     }
                     writer.println();
                 }
@@ -598,23 +597,30 @@ public class HollywoodGraph implements Graph<FilmElement> {
             writer.println("testing separation()");
             writer.println("Megan Fox to Tyler Perry. Expected: 1. Actual: " + s1.separation("Megan Fox", "Tyler Perry"));
             writer.println("Nick Arapoglou to Tyler Perry. Expected: 3. Actual: " + s1.separation("Nick Arapoglou", "Tyler Perry"));
-writer.println();
+            writer.println();
 
             System.out.println("Testing Bechdel test");
+            writer.println("Our Bechel Test checks if the cast in a movie has at least 50% women");
+            int count = 0; 
+            int moviesPassed = 0;
              for (int i = 0; i < s1.vertices.size(); i++) {
                 FilmElement temp = s1.vertices.get(i);
                 if (temp.getType().equals("Movie")) {
                     writer.print(s1.vertices.get(i));
-                    double test = s1.upholdTest((Movie) temp);
+                    double test = s1.newBechdelTest((Movie) temp);
                     double percentage = (double) Math.round(test * 10000) / 100;
                     if (test >= .50) {
-                        writer.print(": Cast is " + percentage + "% female PASSES the Uphold Test");
+                        writer.print(": Cast is " + percentage + "% female PASSES the Bechdel Test");
+                        moviesPassed++;
+                        
                     } else {
-                        writer.print(": Cast is " + percentage + "% female FAILS the Uphold Test");
+                        writer.print(": Cast is " + percentage + "% female FAILS the Bechdel Test");
                     }
+                    count++;
                     writer.println();
                 }
             }
+            writer.println(((double) Math.round(((double)moviesPassed/count) * 10000) / 100) + "% movies passed the new Bechdel Test. This is " + moviesPassed + " movies out of " + count + " movies" );
             writer.close();
         } catch (IOException ex) {
             System.out.println(ex); // Handle file-not-found

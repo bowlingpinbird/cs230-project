@@ -1,4 +1,4 @@
-# Gender Imbalance in a Movie Graph
+# Gender Imbalance in a Movie
 Authors: Sophie Lin, Rachel Hu, Lilymoon Whalen
 
 CS230-01 Data Structures [final project](https://docs.google.com/document/d/1IycwGMGrk4UIMnbUNGa4i-qg65y6vre8VQmrD0hJ4Z8/edit)

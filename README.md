@@ -6,4 +6,4 @@ Authors: Sophie Lin, Rachel Hu, Lilymoon Whalen
 [Report](https://docs.google.com/document/d/18nHrEye83xhXy59o9LZ-YYStOAK56iI4_6ZLqQlfceY/edit) describing our methods, collaboration process, and conclusions.
 
 This repository's visibility is set to public right now to allow graders to get a wider perspective on how we completed this project.
-The visibility was set to private until after the final sumission period passed to adhere with the Wellesley College Honor Code.
+The visibility was set to private until after the final sumission period passed to adhere to the Wellesley College Honor Code.

@@ -22,10 +22,6 @@ public class Actor extends FilmElement {
      */
     private Dictionary<String, Role> roleInfo; // given a movie name, we can see the role assoicated with such movie
     private Vector<Movie> movies; // list of movies the actor has participated in
-   // private Vector<String> roles; // all roles the actor has played
-   // private Vector<String> roleTypes; // types of roles of the actor's roles
-    //private Vector<Integer> billings; // billing of each role
-    //private Vector<String> genders; // gender of each role played
 
     /**
      * Constructor for a new Actor based on name
@@ -38,10 +34,6 @@ public class Actor extends FilmElement {
         roleInfo = new Hashtable<>();
 
         movies = new Vector<Movie>();
-       // roles = new Vector<String>();
-       // roleTypes = new Vector<String>();
-       // billings = new Vector<Integer>();
-       // genders = new Vector<String>();
     }
 
     /**
@@ -75,15 +67,8 @@ public class Actor extends FilmElement {
         Role role = new Role(roleName, roleTypeName, billing, genderName);
         roleInfo.put(movieName, role);
         this.movies.add(new Movie(movieName));
-
-        //this.roles.add(roleName);
-        //this.roleTypes.add(roleTypeName);
-        //this.billings.add(Integer.parseInt(billing));
-        //this.genders.add(genderName);
         roleCount++;
     }
-
-    
 
     /**
      * Returns a String list of all the movies this Actor has played in
@@ -97,6 +82,7 @@ public class Actor extends FilmElement {
         }
         return description;
     }
+
     /** gets the gender assiociated with specific movie
      * 
      * @return
@@ -106,9 +92,11 @@ public class Actor extends FilmElement {
         return temp.getGender();
     }
 
+    /**
+     * Returns a String description of this Actor (the actor's name)
+     * @reutrn this Actor's name
+     */
     public String toString() {
         return name;
     }
-
-    // TODO ask Takis about what he means with main() to show how we use this class
 }

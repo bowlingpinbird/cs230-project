@@ -9,7 +9,6 @@
  */
 
 public class Role {
-    private String movie;
     private String gender;
     private String roleName;
     private String roleType;
@@ -27,7 +26,7 @@ public class Role {
     }
 
     public String getRoleName() {
-        return movie;
+        return roleName;
     }
 
     public String getRoleType() {
@@ -39,7 +38,7 @@ public class Role {
     }
 
     public String toString() {
-        return "Movie: " + this.movie + ", Role: " + this.roleName + ", Gender: " + this.gender + ", Role type: " + this.roleType + ", Billing: " + this.billing + "\n";
+        return  "Role: " + this.roleName + ", Gender: " + this.gender + ", Role type: " + this.roleType + ", Billing: " + this.billing + "\n";
     }
 
 }

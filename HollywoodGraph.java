@@ -380,12 +380,12 @@ public class HollywoodGraph implements Graph<FilmElement> {
     public ArrayList<String> getAllActors(FilmElement movie) {
         ArrayList<String> list = new ArrayList<String>();
         int index = -1;
-        if (isVertex(movie)) {
-            for (int i = 0; i < vertices.size(); i++) {
+        if (isVertex(movie)) { //checks if the given movie is a movie in the graph
+            for (int i = 0; i < vertices.size(); i++) {//runs through the movies
                 if (vertices.elementAt(i).getName().equals(movie.getName()))
                     index = i;
             }
-            for (int i = 0; i < arcs.get(index).size(); i++) {
+            for (int i = 0; i < arcs.get(index).size(); i++) { //runs through the lists of actors relevant to that movie and adds it to the arraylist
                 list.add(arcs.get(index).get(i).getName());
             }
         } else {
@@ -398,15 +398,15 @@ public class HollywoodGraph implements Graph<FilmElement> {
     /**
      * Returns all the movies from the given actor
      * 
-     * @param FilmElement movie
+     * @param FilmElement actor
      * @return ArrayList<String> all the actors from the given movie
      */
     public ArrayList<String> getAllMovies(FilmElement actor) {
         ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < vertices.size(); i++) {
-            for (int j = 0; j < arcs.get(i).size(); j++) {
-                if (arcs.get(i).get(j).getName().equals(actor.getName()))
-                    list.add(vertices.get(i).getName());
+        for (int i = 0; i < vertices.size(); i++) {//runs through all the movies
+            for (int j = 0; j < arcs.get(i).size(); j++) { //runs through all the actors in that movie
+                if (arcs.get(i).get(j).getName().equals(actor.getName()))//checks if the actors is in the movie
+                    list.add(vertices.get(i).getName());//add the movie to the arraylist if they are
             }
         }
         return list;

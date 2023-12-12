@@ -8,53 +8,55 @@ testing separation()
 Megan Fox to Tyler Perry. Expected: 1. Actual: 1
 Nick Arapoglou to Tyler Perry. Expected: 3. Actual: 3
 
-Boo! A Madea Halloween: Cast is 19.05% female FAILS the Uphold Test
-Hidden Figures: Cast is 33.33% female FAILS the Uphold Test
-Sully: Cast is 24.59% female FAILS the Uphold Test
-The Girl on the Train: Cast is 35.0% female FAILS the Uphold Test
-Don't Breathe: Cast is 50.0% female PASSES the Uphold Test
-10 Cloverfield Lane: Cast is 30.0% female FAILS the Uphold Test
-Bad Moms: Cast is 62.5% female PASSES the Uphold Test
-La La Land: Cast is 40.82% female FAILS the Uphold Test
-Arrival: Cast is 35.0% female FAILS the Uphold Test
-Storks: Cast is 28.0% female FAILS the Uphold Test
-Hacksaw Ridge: Cast is 5.56% female FAILS the Uphold Test
-Star Trek Beyond: Cast is 26.09% female FAILS the Uphold Test
-Pete's Dragon: Cast is 26.83% female FAILS the Uphold Test
-Sing: Cast is 29.09% female FAILS the Uphold Test
-The Purge: Election Year: Cast is 26.83% female FAILS the Uphold Test
-The Boss: Cast is 48.65% female FAILS the Uphold Test
-The Magnificent Seven: Cast is 6.25% female FAILS the Uphold Test
-Zootopia: Cast is 31.25% female FAILS the Uphold Test
-Doctor Strange: Cast is 27.59% female FAILS the Uphold Test
-The Accountant: Cast is 24.14% female FAILS the Uphold Test
-Suicide Squad: Cast is 18.52% female FAILS the Uphold Test
-Now You See Me 2: Cast is 25.0% female FAILS the Uphold Test
-Teenage Mutant Ninja Turtles: Out of the Shadows: Cast is 21.74% female FAILS the Uphold Test
-Lights Out: Cast is 71.43% female PASSES the Uphold Test
-Rogue One: A Star Wars Story: Cast is 18.18% female FAILS the Uphold Test
-Fantastic Beasts and Where to Find Them: Cast is 26.23% female FAILS the Uphold Test
-Sausage Party: Cast is 24.24% female FAILS the Uphold Test
-Ride Along 2: Cast is 30.0% female FAILS the Uphold Test
-The Conjuring 2: The Enfield Poltergeist: Cast is 46.88% female FAILS the Uphold Test
-The Legend of Tarzan: Cast is 17.24% female FAILS the Uphold Test
-Captain America: Civil War: Cast is 23.08% female FAILS the Uphold Test
-The Divergent Series: Allegiant: Cast is 39.56% female FAILS the Uphold Test
-Ice Age: Collision Course: Cast is 33.33% female FAILS the Uphold Test
-Jason Bourne: Cast is 13.95% female FAILS the Uphold Test
-X-Men: Apocalypse: Cast is 20.0% female FAILS the Uphold Test
-Alice Through the Looking Glass: Cast is 39.13% female FAILS the Uphold Test
-The Jungle Book: Cast is 18.18% female FAILS the Uphold Test
-Batman v Superman: Dawn of Justice: Cast is 29.51% female FAILS the Uphold Test
-Moana: Cast is 42.86% female FAILS the Uphold Test
-Miss Peregrine's Home for Peculiar Children: Cast is 30.19% female FAILS the Uphold Test
-Independence Day: Resurgence: Cast is 28.57% female FAILS the Uphold Test
-The Angry Birds Movie: Cast is 36.17% female FAILS the Uphold Test
-The Secret Life of Pets: Cast is 19.35% female FAILS the Uphold Test
-Finding Dory: Cast is 28.57% female FAILS the Uphold Test
-Kung Fu Panda 3: Cast is 25.0% female FAILS the Uphold Test
-Trolls: Cast is 46.88% female FAILS the Uphold Test
-Passengers: Cast is 40.74% female FAILS the Uphold Test
-Ghostbusters: Cast is 29.63% female FAILS the Uphold Test
-Deadpool: Cast is 32.35% female FAILS the Uphold Test
-Central Intelligence: Cast is 16.0% female FAILS the Uphold Test
+Our Bechel Test checks if the cast in a movie has at least 50% women
+Boo! A Madea Halloween: Cast is 19.05% female FAILS the Bechdel Test
+Hidden Figures: Cast is 33.33% female FAILS the Bechdel Test
+Sully: Cast is 24.59% female FAILS the Bechdel Test
+The Girl on the Train: Cast is 35.0% female FAILS the Bechdel Test
+Don't Breathe: Cast is 50.0% female PASSES the Bechdel Test
+10 Cloverfield Lane: Cast is 30.0% female FAILS the Bechdel Test
+Bad Moms: Cast is 62.5% female PASSES the Bechdel Test
+La La Land: Cast is 40.82% female FAILS the Bechdel Test
+Arrival: Cast is 35.0% female FAILS the Bechdel Test
+Storks: Cast is 28.0% female FAILS the Bechdel Test
+Hacksaw Ridge: Cast is 5.56% female FAILS the Bechdel Test
+Star Trek Beyond: Cast is 26.09% female FAILS the Bechdel Test
+Pete's Dragon: Cast is 26.83% female FAILS the Bechdel Test
+Sing: Cast is 29.09% female FAILS the Bechdel Test
+The Purge: Election Year: Cast is 26.83% female FAILS the Bechdel Test
+The Boss: Cast is 48.65% female FAILS the Bechdel Test
+The Magnificent Seven: Cast is 6.25% female FAILS the Bechdel Test
+Zootopia: Cast is 31.25% female FAILS the Bechdel Test
+Doctor Strange: Cast is 27.59% female FAILS the Bechdel Test
+The Accountant: Cast is 24.14% female FAILS the Bechdel Test
+Suicide Squad: Cast is 18.52% female FAILS the Bechdel Test
+Now You See Me 2: Cast is 25.0% female FAILS the Bechdel Test
+Teenage Mutant Ninja Turtles: Out of the Shadows: Cast is 21.74% female FAILS the Bechdel Test
+Lights Out: Cast is 71.43% female PASSES the Bechdel Test
+Rogue One: A Star Wars Story: Cast is 18.18% female FAILS the Bechdel Test
+Fantastic Beasts and Where to Find Them: Cast is 26.23% female FAILS the Bechdel Test
+Sausage Party: Cast is 24.24% female FAILS the Bechdel Test
+Ride Along 2: Cast is 30.0% female FAILS the Bechdel Test
+The Conjuring 2: The Enfield Poltergeist: Cast is 46.88% female FAILS the Bechdel Test
+The Legend of Tarzan: Cast is 17.24% female FAILS the Bechdel Test
+Captain America: Civil War: Cast is 23.08% female FAILS the Bechdel Test
+The Divergent Series: Allegiant: Cast is 39.56% female FAILS the Bechdel Test
+Ice Age: Collision Course: Cast is 33.33% female FAILS the Bechdel Test
+Jason Bourne: Cast is 13.95% female FAILS the Bechdel Test
+X-Men: Apocalypse: Cast is 20.0% female FAILS the Bechdel Test
+Alice Through the Looking Glass: Cast is 39.13% female FAILS the Bechdel Test
+The Jungle Book: Cast is 18.18% female FAILS the Bechdel Test
+Batman v Superman: Dawn of Justice: Cast is 29.51% female FAILS the Bechdel Test
+Moana: Cast is 42.86% female FAILS the Bechdel Test
+Miss Peregrine's Home for Peculiar Children: Cast is 30.19% female FAILS the Bechdel Test
+Independence Day: Resurgence: Cast is 28.57% female FAILS the Bechdel Test
+The Angry Birds Movie: Cast is 36.17% female FAILS the Bechdel Test
+The Secret Life of Pets: Cast is 19.35% female FAILS the Bechdel Test
+Finding Dory: Cast is 28.57% female FAILS the Bechdel Test
+Kung Fu Panda 3: Cast is 25.0% female FAILS the Bechdel Test
+Trolls: Cast is 46.88% female FAILS the Bechdel Test
+Passengers: Cast is 40.74% female FAILS the Bechdel Test
+Ghostbusters: Cast is 29.63% female FAILS the Bechdel Test
+Deadpool: Cast is 32.35% female FAILS the Bechdel Test
+Central Intelligence: Cast is 16.0% female FAILS the Bechdel Test
+6.0% movies passed the new Bechdel Test. This is 3 movies out of 50 movies
